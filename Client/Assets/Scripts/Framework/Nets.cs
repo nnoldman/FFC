@@ -196,7 +196,7 @@ public class Nets : BaseController {
     }
 
 
-    public static void SendByServerID(SERVER_MESSAGE msgid) {
+    public static void SendByServerID(SCOPCode msgid) {
         if (!isConnected)
             return;
         stClientUnityUserCmd sendcmd = new stClientUnityUserCmd();
@@ -216,8 +216,8 @@ public class Nets : BaseController {
             return true;
         }
     }
-    public static void Send(CLIENT_MESSAGE msgid) {
-        SendByServerID((SERVER_MESSAGE)msgid);
+    public static void Send(CSOPCode msgid) {
+        SendByServerID((SCOPCode)msgid);
     }
 
     public static void Send(ICmdBase cmd) {
@@ -228,7 +228,7 @@ public class Nets : BaseController {
         Instance.mMainSocket.send(sSerializeBuffer);
     }
 
-    public static void Send<T>(CLIENT_MESSAGE msgid, T protodata) where T : ICommand {
+    public static void Send<T>(CSOPCode msgid, T protodata) where T : ICommand {
         if (!isConnected)
             return;
         MemoryStream stream = new MemoryStream();
