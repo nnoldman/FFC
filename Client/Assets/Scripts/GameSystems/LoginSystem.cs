@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using FlatBuffers;
 
 public class LoginSystem: GameSystem<LoginSystem> {
     public bool ret;
@@ -25,6 +26,16 @@ public class LoginSystem: GameSystem<LoginSystem> {
     public void Login(string user, string psw) {
         this.user = user;
         this.passWord = psw;
+        FlatBufferBuilder builder = new FlatBufferBuilder(1024);
+        Command.RqLogin.StartRqLogin(builder);
+        Command.RqLogin.AddName(builder, builder.CreateString(user));
+        Command.RqLogin.AddPsw(builder, builder.CreateString(psw));
+        Command.RqLogin.AddId(builder, 5);
+        var offset = Command.RqLogin.EndRqLogin(builder);
+        Command.RqLogin.FinishRqLoginBuffer(builder, offset);
+        //------------------------------------------------------
+
+        Nets.Send(CSOPCode.RqServerLogin);
         PlayerPrefs.SetString(kUserKey, user);
         PlayerPrefs.SetString(kPasswordKey, psw);
     }
