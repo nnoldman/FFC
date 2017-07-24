@@ -24,10 +24,10 @@ namespace Google.Protobuf.WellKnownTypes {
           string.Concat(
             "Cg1Db21tYW5kLnByb3RvEgNDbWQiOAoIRHVyYXRpb24SDwoHc2Vjb25kcxgB",
             "IAEoAxINCgVuYW5vcxgCIAEoBRIMCgRuYW1lGAMgASgJIigKDFJUR2FtZVNl",
-            "cnZlchIKCgJpcBgBIAEoCRIMCgRwb3J0GAIgASgFQnwKE2NvbS5nb29nbGUu",
-            "cHJvdG9idWZCDUR1cmF0aW9uUHJvdG9QAVoqZ2l0aHViLmNvbS9nb2xhbmcv",
-            "cHJvdG9idWYvcHR5cGVzL2R1cmF0aW9uoAEBogIDR1BCqgIeR29vZ2xlLlBy",
-            "b3RvYnVmLldlbGxLbm93blR5cGVzYgZwcm90bzM="));
+            "cnZlchIKCgJpcBgBIAEoCRIMCgRwb3J0GAIgASgFQn4KE2NvbS5nb29nbGUu",
+            "cHJvdG9idWZCDUR1cmF0aW9uUHJvdG9IA1ABWipnaXRodWIuY29tL2dvbGFu",
+            "Zy9wcm90b2J1Zi9wdHlwZXMvZHVyYXRpb26gAQGiAgNHUEKqAh5Hb29nbGUu",
+            "UHJvdG9idWYuV2VsbEtub3duVHlwZXNiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
