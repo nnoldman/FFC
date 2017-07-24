@@ -58,12 +58,6 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -76,6 +70,9 @@
     <Reference Include="DOTween">
       <HintPath>Assets\Plugins\3rd\DOTween.dll</HintPath>
     </Reference>
+    <Reference Include="protobuf-net">
+      <HintPath>Assets\Plugins\3rd\ProtoBuf\protobuf-net.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Client.CSharp.Plugins.csproj">
@@ -84,15 +81,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\CSOPCode.cs" />
-    <Compile Include="Assets\Scripts\Command\Any.cs" />
-    <Compile Include="Assets\Scripts\Command\Color.cs" />
-    <Compile Include="Assets\Scripts\Command\CommandID.cs" />
-    <Compile Include="Assets\Scripts\Command\RTGameServer.cs" />
-    <Compile Include="Assets\Scripts\Command\RqLogin.cs" />
-    <Compile Include="Assets\Scripts\Command\TestAppend.cs" />
-    <Compile Include="Assets\Scripts\Command\Texture.cs" />
-    <Compile Include="Assets\Scripts\Command\TextureData.cs" />
+    <Compile Include="Assets\Scripts\Cmd.cs" />
+    <Compile Include="Assets\Scripts\Command.cs" />
     <Compile Include="Assets\Scripts\Framework\Flow.cs" />
     <Compile Include="Assets\Scripts\Framework\Nets.cs" />
     <Compile Include="Assets\Scripts\Game\GameBase\Commands.cs" />
@@ -128,11 +118,11 @@
     <Compile Include="Assets\Scripts\Game\UI\Login\LoginError.cs" />
     <Compile Include="Assets\Scripts\Game\UI\Login\LoginResult.cs" />
     <Compile Include="Assets\Scripts\GameSystems\LoginSystem.cs" />
-    <Compile Include="Assets\Scripts\SCOPCode.cs" />
     <Compile Include="Assets\Scripts\Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Plugins\3rd\Protobuf\Web\TODO.txt" />
+    <None Include="Assets\Plugins\3rd\ProtoBuf\Licence.txt" />
+    <None Include="Assets\Plugins\3rd\ProtoBuf\protobuf-net.xml" />
     <None Include="Assets\Resources\Fairy\Shaders\AddOn\FairyGUI-BlurFilter.shader" />
     <None Include="Assets\Resources\Fairy\Shaders\FairyGUI-BMFont.shader" />
     <None Include="Assets\Resources\Fairy\Shaders\FairyGUI-Image.shader" />

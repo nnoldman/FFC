@@ -58,12 +58,6 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -75,6 +69,9 @@
     </Reference>
     <Reference Include="DOTween">
       <HintPath>Assets\Plugins\3rd\DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net">
+      <HintPath>Assets\Plugins\3rd\ProtoBuf\protobuf-net.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -212,99 +209,6 @@
     <Compile Include="Assets\Plugins\3rd\FairyGUI\Utils\XMLList.cs" />
     <Compile Include="Assets\Plugins\3rd\FairyGUI\Utils\XMLUtils.cs" />
     <Compile Include="Assets\Plugins\3rd\FairyGUI\Utils\ZipReader.cs" />
-    <Compile Include="Assets\Plugins\3rd\FlatBuffers\ByteBuffer.cs" />
-    <Compile Include="Assets\Plugins\3rd\FlatBuffers\FlatBufferBuilder.cs" />
-    <Compile Include="Assets\Plugins\3rd\FlatBuffers\FlatBufferConstants.cs" />
-    <Compile Include="Assets\Plugins\3rd\FlatBuffers\IFlatbufferObject.cs" />
-    <Compile Include="Assets\Plugins\3rd\FlatBuffers\Offset.cs" />
-    <Compile Include="Assets\Plugins\3rd\FlatBuffers\Properties\AssemblyInfo.cs" />
-    <Compile Include="Assets\Plugins\3rd\FlatBuffers\Struct.cs" />
-    <Compile Include="Assets\Plugins\3rd\FlatBuffers\Table.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\BclHelpers.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\BufferExtension.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\BufferPool.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\CallbackAttributes.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Compiler\CompilerContext.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Compiler\CompilerDelegates.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Compiler\Local.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\DataFormat.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Extensible.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\ExtensibleUtil.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\GlobalSuppressions.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Helpers.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\IExtensible.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\IExtension.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\ImplicitFields.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\KeyValuePairProxy.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Meta\AttributeMap.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Meta\BasicList.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Meta\CallbackSet.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Meta\MetaType.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Meta\RuntimeTypeModel.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Meta\SubType.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Meta\TypeFormatEventArgs.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Meta\TypeModel.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Meta\ValueMember.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\NetObjectCache.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\PrefixStyle.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\ProtoContractAttribute.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\ProtoEnumAttribute.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\ProtoException.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\ProtoIgnoreAttribute.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\ProtoIncludeAttribute.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\ProtoMemberAttribute.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\ProtoReader.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\ProtoWriter.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\SerializationContext.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializer.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\ArrayDecorator.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\BlobSerializer.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\BooleanSerializer.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\ByteSerializer.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\CharSerializer.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\CompiledSerializer.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\DateTimeSerializer.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\DecimalSerializer.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\DefaultValueDecorator.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\DoubleSerializer.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\EnumSerializer.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\FieldDecorator.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\GuidSerializer.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\IProtoSerializer.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\IProtoTypeSerializer.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\ISerializerProxy.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\Int16Serializer.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\Int32Serializer.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\Int64Serializer.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\KeyValuePairDecorator.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\ListDecorator.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\MemberSpecifiedDecorator.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\NetObjectSerializer.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\NullDecorator.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\ParseableSerializer.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\PropertyDecorator.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\ProtoDecoratorBase.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\SByteSerializer.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\SingleSerializer.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\StringSerializer.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\SubItemSerializer.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\SurrogateSerializer.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\SystemTypeSerializer.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\TagDecorator.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\TimeSpanSerializer.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\TupleSerializer.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\TypeSerializer.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\UInt16Serializer.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\UInt32Serializer.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\UInt64Serializer.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\Serializers\UriDecorator.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\ServiceModel\ProtoBehaviorAttribute.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\ServiceModel\ProtoBehaviorExtensionElement.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\ServiceModel\ProtoEndpointBehavior.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\ServiceModel\ProtoOperationBehavior.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\ServiceModel\XmlProtoSerializer.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\SubItemToken.cs" />
-    <Compile Include="Assets\Plugins\3rd\Protobuf\WireType.cs" />
     <Compile Include="Assets\Plugins\Base\ActorShadow.cs" />
     <Compile Include="Assets\Plugins\Base\AppState.cs" />
     <Compile Include="Assets\Plugins\Base\BaseCommand.cs" />
@@ -365,7 +269,8 @@
     <Compile Include="Assets\Plugins\SDK\ISDKInterface.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Plugins\3rd\Protobuf\Web\TODO.txt" />
+    <None Include="Assets\Plugins\3rd\ProtoBuf\Licence.txt" />
+    <None Include="Assets\Plugins\3rd\ProtoBuf\protobuf-net.xml" />
     <None Include="Assets\Resources\Fairy\Shaders\AddOn\FairyGUI-BlurFilter.shader" />
     <None Include="Assets\Resources\Fairy\Shaders\FairyGUI-BMFont.shader" />
     <None Include="Assets\Resources\Fairy\Shaders\FairyGUI-Image.shader" />
