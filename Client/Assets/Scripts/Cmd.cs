@@ -14,19 +14,22 @@ namespace Cmd
     public enum CLIENT_COMMAND
     {
             
-      [global::ProtoBuf.ProtoEnum(Name=@"RQLogin", Value=0)]
-      RQLogin = 0,
+      [global::ProtoBuf.ProtoEnum(Name=@"RQGameServerInfo", Value=100)]
+      RQGameServerInfo = 100,
             
-      [global::ProtoBuf.ProtoEnum(Name=@"RQLogin2", Value=1)]
-      RQLogin2 = 1
+      [global::ProtoBuf.ProtoEnum(Name=@"RQAccountOperation", Value=300)]
+      RQAccountOperation = 300
     }
   
     [global::ProtoBuf.ProtoContract(Name=@"SERVER_COMMAND")]
     public enum SERVER_COMMAND
     {
             
-      [global::ProtoBuf.ProtoEnum(Name=@"RTLogin", Value=0)]
-      RTLogin = 0
+      [global::ProtoBuf.ProtoEnum(Name=@"RTGameServer", Value=100)]
+      RTGameServer = 100,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"RTAccountOperation", Value=300)]
+      RTAccountOperation = 300
     }
   
 }
