@@ -20,7 +20,7 @@ public class GameSystem<T> : SystemBase, IEventSender where T : SystemBase, new(
         throw new NotImplementedException();
     }
 
-    protected void BindCommand<T>(CommandID id, Action<T> callback) where T : ICommand {
+    protected void BindCommand<T>(Cmd.SERVER_COMMAND id, Action<T> callback) where T : ICommand {
         Commands.Instance.Bind((int)id, callback);
     }
 }

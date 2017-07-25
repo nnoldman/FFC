@@ -196,7 +196,7 @@ public class Nets : BaseController {
     }
 
 
-    public static void SendByServerID(SCOPCode msgid) {
+    public static void SendByServerID(Cmd.CLIENT_COMMAND msgid) {
         if (!isConnected)
             return;
         stClientUnityUserCmd sendcmd = new stClientUnityUserCmd();
@@ -216,8 +216,8 @@ public class Nets : BaseController {
             return true;
         }
     }
-    public static void Send(CSOPCode msgid) {
-        SendByServerID((SCOPCode)msgid);
+    public static void Send(Cmd.CLIENT_COMMAND msgid) {
+        SendByServerID((Cmd.CLIENT_COMMAND)msgid);
     }
 
     public static void Send(ICmdBase cmd) {
@@ -228,7 +228,7 @@ public class Nets : BaseController {
         Instance.mMainSocket.send(sSerializeBuffer);
     }
 
-    public static void Send<T>(CSOPCode msgid, T protodata) where T : ICommand {
+    public static void Send<T>(Cmd.CLIENT_COMMAND msgid, T protodata) where T : ICommand {
         if (!isConnected)
             return;
         MemoryStream stream = new MemoryStream();
@@ -251,7 +251,7 @@ public class Nets : BaseController {
     }
     public static object Parse(byte[] msg, Type tp) {
         MemoryStream stream = new MemoryStream(msg);
-        object protoBuffer = ProtoBuf.Serializer.Deserialize(stream, tp);
+        object protoBuffer = ProtoBuf.Serializer.NonGeneric.Deserialize(tp, stream);
         // LogClass.Instance.LogReceive(protoBuffer);
         return protoBuffer;
     }
