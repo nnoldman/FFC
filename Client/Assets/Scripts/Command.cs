@@ -10,6 +10,75 @@
 // Generated from: Command.proto
 namespace Cmd
 {
+  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"ReqAccountOperation")]
+  public partial class ReqAccountOperation : global::ProtoBuf.IExtensible
+  {
+    public ReqAccountOperation() {}
+    
+    private Cmd.AccountAction _action;
+    [global::ProtoBuf.ProtoMember(1, IsRequired = true, Name=@"action", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    public Cmd.AccountAction action
+    {
+      get { return _action; }
+      set { _action = value; }
+    }
+    private string _user;
+    [global::ProtoBuf.ProtoMember(2, IsRequired = true, Name=@"user", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    public string user
+    {
+      get { return _user; }
+      set { _user = value; }
+    }
+    private string _password;
+    [global::ProtoBuf.ProtoMember(3, IsRequired = true, Name=@"password", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    public string password
+    {
+      get { return _password; }
+      set { _password = value; }
+    }
+    private global::ProtoBuf.IExtension extensionObject;
+    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
+  }
+  
+  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"RetAccountOperation")]
+  public partial class RetAccountOperation : global::ProtoBuf.IExtensible
+  {
+    public RetAccountOperation() {}
+    
+    private Cmd.AccountErrorCode _error;
+    [global::ProtoBuf.ProtoMember(1, IsRequired = true, Name=@"error", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    public Cmd.AccountErrorCode error
+    {
+      get { return _error; }
+      set { _error = value; }
+    }
+    private string _user;
+    [global::ProtoBuf.ProtoMember(2, IsRequired = true, Name=@"user", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    public string user
+    {
+      get { return _user; }
+      set { _user = value; }
+    }
+    private string _password;
+    [global::ProtoBuf.ProtoMember(3, IsRequired = true, Name=@"password", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    public string password
+    {
+      get { return _password; }
+      set { _password = value; }
+    }
+    private int _userid;
+    [global::ProtoBuf.ProtoMember(4, IsRequired = true, Name=@"userid", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    public int userid
+    {
+      get { return _userid; }
+      set { _userid = value; }
+    }
+    private global::ProtoBuf.IExtension extensionObject;
+    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
+  }
+  
   [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"RetGameServer")]
   public partial class RetGameServer : global::ProtoBuf.IExtensible
   {
@@ -65,7 +134,10 @@ namespace Cmd
       AccountAction_Rename = 2,
             
       [global::ProtoBuf.ProtoEnum(Name=@"AccountAction_Delete", Value=3)]
-      AccountAction_Delete = 3
+      AccountAction_Delete = 3,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"AccountAction_Login", Value=4)]
+      AccountAction_Login = 4
     }
   
     [global::ProtoBuf.ProtoContract(Name=@"AccountErrorCode")]
@@ -75,11 +147,20 @@ namespace Cmd
       [global::ProtoBuf.ProtoEnum(Name=@"AccountErrorCode_None", Value=0)]
       AccountErrorCode_None = 0,
             
-      [global::ProtoBuf.ProtoEnum(Name=@"AccountErrorCode_Sucessed", Value=1)]
-      AccountErrorCode_Sucessed = 1,
+      [global::ProtoBuf.ProtoEnum(Name=@"AccountErrorCode_CreateSucessed", Value=1)]
+      AccountErrorCode_CreateSucessed = 1,
             
-      [global::ProtoBuf.ProtoEnum(Name=@"AccountErrorCode_Existed", Value=2)]
-      AccountErrorCode_Existed = 2
+      [global::ProtoBuf.ProtoEnum(Name=@"AccountErrorCode_NameRepeated", Value=2)]
+      AccountErrorCode_NameRepeated = 2,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"AccountErrorCode_UserCantFind", Value=3)]
+      AccountErrorCode_UserCantFind = 3,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"AccountErrorCode_PasswordError", Value=4)]
+      AccountErrorCode_PasswordError = 4,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"AccountErrorCode_LoginSucessed", Value=5)]
+      AccountErrorCode_LoginSucessed = 5
     }
   
 }
