@@ -53,67 +53,36 @@ namespace Cmd
       get { return _error; }
       set { _error = value; }
     }
-    private string _user;
-    [global::ProtoBuf.ProtoMember(2, IsRequired = true, Name=@"user", DataFormat = global::ProtoBuf.DataFormat.Default)]
-    public string user
-    {
-      get { return _user; }
-      set { _user = value; }
-    }
     private string _password;
-    [global::ProtoBuf.ProtoMember(3, IsRequired = true, Name=@"password", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::ProtoBuf.ProtoMember(2, IsRequired = true, Name=@"password", DataFormat = global::ProtoBuf.DataFormat.Default)]
     public string password
     {
       get { return _password; }
       set { _password = value; }
     }
-    private int _userid;
-    [global::ProtoBuf.ProtoMember(4, IsRequired = true, Name=@"userid", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
-    public int userid
+    private int _accountid;
+    [global::ProtoBuf.ProtoMember(3, IsRequired = true, Name=@"accountid", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    public int accountid
     {
-      get { return _userid; }
-      set { _userid = value; }
+      get { return _accountid; }
+      set { _accountid = value; }
     }
     private global::ProtoBuf.IExtension extensionObject;
     global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
       { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
   }
   
-  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"RetGameServer")]
-  public partial class RetGameServer : global::ProtoBuf.IExtensible
+  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"ReqLoginGameServer")]
+  public partial class ReqLoginGameServer : global::ProtoBuf.IExtensible
   {
-    public RetGameServer() {}
+    public ReqLoginGameServer() {}
     
-    private string _ip;
-    [global::ProtoBuf.ProtoMember(1, IsRequired = true, Name=@"ip", DataFormat = global::ProtoBuf.DataFormat.Default)]
-    public string ip
+    private int _accountid;
+    [global::ProtoBuf.ProtoMember(1, IsRequired = true, Name=@"accountid", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    public int accountid
     {
-      get { return _ip; }
-      set { _ip = value; }
-    }
-    private int _port;
-    [global::ProtoBuf.ProtoMember(2, IsRequired = true, Name=@"port", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
-    public int port
-    {
-      get { return _port; }
-      set { _port = value; }
-    }
-    private global::ProtoBuf.IExtension extensionObject;
-    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
-  }
-  
-  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"ReqGameServer")]
-  public partial class ReqGameServer : global::ProtoBuf.IExtensible
-  {
-    public ReqGameServer() {}
-    
-    private int _serverID;
-    [global::ProtoBuf.ProtoMember(1, IsRequired = true, Name=@"serverID", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
-    public int serverID
-    {
-      get { return _serverID; }
-      set { _serverID = value; }
+      get { return _accountid; }
+      set { _accountid = value; }
     }
     private global::ProtoBuf.IExtension extensionObject;
     global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
