@@ -1,0 +1,360 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CD806563-15FB-B918-DFFC-3093DD89B3E5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
+    <CompilerResponseFile></CompilerResponseFile>
+    <UnityProjectType>Game:1</UnityProjectType>
+    <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
+    <UnityVersion>5.3.6f1</UnityVersion>
+    <RootNamespace></RootNamespace>
+    <LangVersion>4</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\UnityVS_bin\Debug\</OutputPath>
+    <IntermediateOutputPath>Temp\UnityVS_obj\Debug\</IntermediateOutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_3_6;UNITY_5_3;UNITY_5;ENABLE_NEW_BUGREPORTER;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_SPRITE_POLYGON;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;INCLUDE_DIRECTX12;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_LOCALIZATION;ENABLE_ANDROID_ATLAS_ETC1_COMPRESSION;ENABLE_EDITOR_TESTS_RUNNER;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_TEXTUREID_MAP;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_LOG_MIXED_STACKTRACE;ENABLE_UNITYWEBREQUEST;ENABLE_EVENT_QUEUE;ENABLE_CLUSTERINPUT;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE</DefineConstants>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\UnityVS_bin\Release\</OutputPath>
+    <IntermediateOutputPath>Temp\UnityVS_obj\Release\</IntermediateOutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DefineConstants>TRACE;UNITY_5_3_OR_NEWER;UNITY_5_3_6;UNITY_5_3;UNITY_5;ENABLE_NEW_BUGREPORTER;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_SPRITE_POLYGON;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;INCLUDE_DIRECTX12;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_LOCALIZATION;ENABLE_ANDROID_ATLAS_ETC1_COMPRESSION;ENABLE_EDITOR_TESTS_RUNNER;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_TEXTUREID_MAP;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_LOG_MIXED_STACKTRACE;ENABLE_UNITYWEBREQUEST;ENABLE_EVENT_QUEUE;ENABLE_CLUSTERINPUT;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE</DefineConstants>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Core" />
+    <Reference Include="Boo.Lang" />
+    <Reference Include="UnityScript.Lang" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="UnityEngine">
+      <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil">
+      <HintPath>Library\UnityAssemblies\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>Assets\Plugins\3rd\DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="protobuf-net">
+      <HintPath>Assets\Plugins\3rd\ProtoBuf\protobuf-net.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Client.Plugins.csproj">
+      <Project>{CD8B39A7-2696-76FF-BAC7-A371D092680D}</Project>
+      <Name>Client.Plugins</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\Scripts\Cmd.cs" />
+    <Compile Include="Assets\Scripts\Command.cs" />
+    <Compile Include="Assets\Scripts\Framework\Flow.cs" />
+    <Compile Include="Assets\Scripts\Framework\Nets.cs" />
+    <Compile Include="Assets\Scripts\Game\GameBase\Commands.cs" />
+    <Compile Include="Assets\Scripts\Game\GameBase\GameEvents.cs" />
+    <Compile Include="Assets\Scripts\Game\GameBase\GameSystem.cs" />
+    <Compile Include="Assets\Scripts\Game\GameBase\View.cs" />
+    <Compile Include="Assets\Scripts\Game\MessageBox.cs" />
+    <Compile Include="Assets\Scripts\Game\UI\Bag\BagBinder.cs" />
+    <Compile Include="Assets\Scripts\Game\UI\Bag\BagWin.cs" />
+    <Compile Include="Assets\Scripts\Game\UI\Bag\Main.cs" />
+    <Compile Include="Assets\Scripts\Game\UI\Bag\WindowFrame.cs" />
+    <Compile Include="Assets\Scripts\Game\UI\Basics\BasicsBinder.cs" />
+    <Compile Include="Assets\Scripts\Game\UI\Basics\Button5.cs" />
+    <Compile Include="Assets\Scripts\Game\UI\Basics\Button52.cs" />
+    <Compile Include="Assets\Scripts\Game\UI\Basics\ComboBoxPopup.cs" />
+    <Compile Include="Assets\Scripts\Game\UI\Basics\Demo_Button.cs" />
+    <Compile Include="Assets\Scripts\Game\UI\Basics\Demo_Controller.cs" />
+    <Compile Include="Assets\Scripts\Game\UI\Basics\Demo_Depth.cs" />
+    <Compile Include="Assets\Scripts\Game\UI\Basics\Demo_Grid.cs" />
+    <Compile Include="Assets\Scripts\Game\UI\Basics\Demo_Label.cs" />
+    <Compile Include="Assets\Scripts\Game\UI\Basics\Demo_Relation.cs" />
+    <Compile Include="Assets\Scripts\Game\UI\Basics\Dropdown.cs" />
+    <Compile Include="Assets\Scripts\Game\UI\Basics\Dropdown2.cs" />
+    <Compile Include="Assets\Scripts\Game\UI\Basics\GridItem.cs" />
+    <Compile Include="Assets\Scripts\Game\UI\Basics\GridItem2.cs" />
+    <Compile Include="Assets\Scripts\Game\UI\Basics\WindowA.cs" />
+    <Compile Include="Assets\Scripts\Game\UI\Basics\WindowB.cs" />
+    <Compile Include="Assets\Scripts\Game\UI\Basics\WindowFrame.cs" />
+    <Compile Include="Assets\Scripts\Game\UI\Basics\WindowFrameB.cs" />
+    <Compile Include="Assets\Scripts\Game\UI\HomePage\HomePageBinder.cs" />
+    <Compile Include="Assets\Scripts\Game\UI\HomePage\HomePageWindow.cs" />
+    <Compile Include="Assets\Scripts\Game\UI\HomePage\Main.cs" />
+    <Compile Include="Assets\Scripts\Game\UI\Login\LoginError.cs" />
+    <Compile Include="Assets\Scripts\Game\UI\Login\LoginResult.cs" />
+    <Compile Include="Assets\Scripts\GameSystems\LoginSystem.cs" />
+    <Compile Include="Assets\Scripts\Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Plugins\3rd\ProtoBuf\Licence.txt" />
+    <None Include="Assets\Plugins\3rd\ProtoBuf\protobuf-net.xml" />
+    <None Include="Assets\Resources\Fairy\Shaders\AddOn\FairyGUI-BlurFilter.shader" />
+    <None Include="Assets\Resources\Fairy\Shaders\FairyGUI-BMFont.shader" />
+    <None Include="Assets\Resources\Fairy\Shaders\FairyGUI-Image.shader" />
+    <None Include="Assets\Resources\Fairy\Shaders\FairyGUI-Text-Brighter.shader" />
+    <None Include="Assets\Resources\Fairy\Shaders\FairyGUI-Text.shader" />
+    <None Include="Assets\UIProject\assets\Bag\BagButton.xml" />
+    <None Include="Assets\UIProject\assets\Bag\BagGridSub.xml" />
+    <None Include="Assets\UIProject\assets\Bag\BagWin.xml" />
+    <None Include="Assets\UIProject\assets\Bag\CloseButton.xml" />
+    <None Include="Assets\UIProject\assets\Bag\Main.xml" />
+    <None Include="Assets\UIProject\assets\Bag\WindowFrame.xml" />
+    <None Include="Assets\UIProject\assets\Bag\package.xml" />
+    <None Include="Assets\UIProject\assets\Basics\CircleProgress.xml" />
+    <None Include="Assets\UIProject\assets\Basics\Demo_Button.xml" />
+    <None Include="Assets\UIProject\assets\Basics\Demo_Clip&amp;Scroll.xml" />
+    <None Include="Assets\UIProject\assets\Basics\Demo_ComboBox.xml" />
+    <None Include="Assets\UIProject\assets\Basics\Demo_Component.xml" />
+    <None Include="Assets\UIProject\assets\Basics\Demo_Controller.xml" />
+    <None Include="Assets\UIProject\assets\Basics\Demo_Depth.xml" />
+    <None Include="Assets\UIProject\assets\Basics\Demo_Drag&amp;Drop.xml" />
+    <None Include="Assets\UIProject\assets\Basics\Demo_Graph.xml" />
+    <None Include="Assets\UIProject\assets\Basics\Demo_Grid.xml" />
+    <None Include="Assets\UIProject\assets\Basics\Demo_Image.xml" />
+    <None Include="Assets\UIProject\assets\Basics\Demo_Label.xml" />
+    <None Include="Assets\UIProject\assets\Basics\Demo_List.xml" />
+    <None Include="Assets\UIProject\assets\Basics\Demo_Loader.xml" />
+    <None Include="Assets\UIProject\assets\Basics\Demo_MovieClip.xml" />
+    <None Include="Assets\UIProject\assets\Basics\Demo_Popup.xml" />
+    <None Include="Assets\UIProject\assets\Basics\Demo_ProgressBar.xml" />
+    <None Include="Assets\UIProject\assets\Basics\Demo_Relation.xml" />
+    <None Include="Assets\UIProject\assets\Basics\Demo_Slider.xml" />
+    <None Include="Assets\UIProject\assets\Basics\Demo_Text.xml" />
+    <None Include="Assets\UIProject\assets\Basics\Demo_Window.xml" />
+    <None Include="Assets\UIProject\assets\Basics\Main.xml" />
+    <None Include="Assets\UIProject\assets\Basics\WindowA.xml" />
+    <None Include="Assets\UIProject\assets\Basics\WindowB.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\BagGridSub.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\BagGridSub2.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Button.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Button1.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Button10.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Button13.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Button14.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Button15.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Button16.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Button2.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Button3.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Button4.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Button5.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Button52.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Button6.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Button7.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Button8.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Button82.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Button9.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Checkbox.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\CloseButton.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\ComboBox.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\ComboBoxItem.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\ComboBoxPopup.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Component1.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Component10.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Component11.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Component12.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Component13.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Component14.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Component2.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Component3.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Component4.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Component5.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Component6.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Component7.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Component8.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Component9.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Dropdown.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Dropdown2.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\GridItem.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\GridItem2.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\OnOffButton.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\ProgressBar.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\ProgressBar1.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\ProgressBar2.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\ProgressBar3.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\ProgressBar4.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\ProgressBar5.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\ProgressBar6.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\RadioButton.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Slider1.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Slider2.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Slider2_grip.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\SliderArrow_HZ.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\SliderArrow_VT.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Slider_HZ.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\Slider_VT.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\WindowCloseButton.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\WindowFrame.xml" />
+    <None Include="Assets\UIProject\assets\Basics\components\WindowFrameB.xml" />
+    <None Include="Assets\UIProject\assets\Basics\font\BMFontTest.fnt" />
+    <None Include="Assets\UIProject\assets\Basics\font\HitNumber.fnt" />
+    <None Include="Assets\UIProject\assets\Basics\package.xml" />
+    <None Include="Assets\UIProject\assets\Basics\popupmenu\PopupMenu.xml" />
+    <None Include="Assets\UIProject\assets\Basics\popupmenu\PopupMenuItem.xml" />
+    <None Include="Assets\UIProject\assets\Basics\scrollbars\GripButton_HZ.xml" />
+    <None Include="Assets\UIProject\assets\Basics\scrollbars\GripButton_VT.xml" />
+    <None Include="Assets\UIProject\assets\Basics\scrollbars\ScrollBar_HZ.xml" />
+    <None Include="Assets\UIProject\assets\Basics\scrollbars\ScrollBar_VT.xml" />
+    <None Include="Assets\UIProject\assets\Basics\scrollbars\ScrollDownButton.xml" />
+    <None Include="Assets\UIProject\assets\Basics\scrollbars\ScrollUpButton.xml" />
+    <None Include="Assets\UIProject\assets\BundleUsage\Main.xml" />
+    <None Include="Assets\UIProject\assets\BundleUsage\package.xml" />
+    <None Include="Assets\UIProject\assets\Cooldown\Button1.xml" />
+    <None Include="Assets\UIProject\assets\Cooldown\Button2.xml" />
+    <None Include="Assets\UIProject\assets\Cooldown\Main.xml" />
+    <None Include="Assets\UIProject\assets\Cooldown\cdtime.fnt" />
+    <None Include="Assets\UIProject\assets\Cooldown\package.xml" />
+    <None Include="Assets\UIProject\assets\Curve\Main.xml" />
+    <None Include="Assets\UIProject\assets\Curve\item.xml" />
+    <None Include="Assets\UIProject\assets\Curve\package.xml" />
+    <None Include="Assets\UIProject\assets\CutScene\Button1.xml" />
+    <None Include="Assets\UIProject\assets\CutScene\CutScene.xml" />
+    <None Include="Assets\UIProject\assets\CutScene\Main.xml" />
+    <None Include="Assets\UIProject\assets\CutScene\ProgressBar5.xml" />
+    <None Include="Assets\UIProject\assets\CutScene\package.xml" />
+    <None Include="Assets\UIProject\assets\EmitNumbers\Main.xml" />
+    <None Include="Assets\UIProject\assets\EmitNumbers\number1.fnt" />
+    <None Include="Assets\UIProject\assets\EmitNumbers\number2.fnt" />
+    <None Include="Assets\UIProject\assets\EmitNumbers\package.xml" />
+    <None Include="Assets\UIProject\assets\Emoji\Button.xml" />
+    <None Include="Assets\UIProject\assets\Emoji\Button2.xml" />
+    <None Include="Assets\UIProject\assets\Emoji\EmojiSelectUI.xml" />
+    <None Include="Assets\UIProject\assets\Emoji\EmojiSelectUI_ios.xml" />
+    <None Include="Assets\UIProject\assets\Emoji\Main.xml" />
+    <None Include="Assets\UIProject\assets\Emoji\ScrollBar_VT.xml" />
+    <None Include="Assets\UIProject\assets\Emoji\chatLeft.xml" />
+    <None Include="Assets\UIProject\assets\Emoji\chatRight.xml" />
+    <None Include="Assets\UIProject\assets\Emoji\faceSub.xml" />
+    <None Include="Assets\UIProject\assets\Emoji\package.xml" />
+    <None Include="Assets\UIProject\assets\Extension\Main.xml" />
+    <None Include="Assets\UIProject\assets\Extension\mailItem.xml" />
+    <None Include="Assets\UIProject\assets\Extension\package.xml" />
+    <None Include="Assets\UIProject\assets\Filter\Button5.xml" />
+    <None Include="Assets\UIProject\assets\Filter\Main.xml" />
+    <None Include="Assets\UIProject\assets\Filter\Slider2.xml" />
+    <None Include="Assets\UIProject\assets\Filter\Slider2_grip.xml" />
+    <None Include="Assets\UIProject\assets\Filter\package.xml" />
+    <None Include="Assets\UIProject\assets\Gesture\Main.xml" />
+    <None Include="Assets\UIProject\assets\Gesture\package.xml" />
+    <None Include="Assets\UIProject\assets\Guide\BagButton.xml" />
+    <None Include="Assets\UIProject\assets\Guide\Button1.xml" />
+    <None Include="Assets\UIProject\assets\Guide\GuideLayer.xml" />
+    <None Include="Assets\UIProject\assets\Guide\Main.xml" />
+    <None Include="Assets\UIProject\assets\Guide\package.xml" />
+    <None Include="Assets\UIProject\assets\HeadBar\HeadBar.xml" />
+    <None Include="Assets\UIProject\assets\HeadBar\Main.xml" />
+    <None Include="Assets\UIProject\assets\HeadBar\bloodbar.xml" />
+    <None Include="Assets\UIProject\assets\HeadBar\package.xml" />
+    <None Include="Assets\UIProject\assets\HitTest\Main.xml" />
+    <None Include="Assets\UIProject\assets\HitTest\button1.xml" />
+    <None Include="Assets\UIProject\assets\HitTest\button2.xml" />
+    <None Include="Assets\UIProject\assets\HitTest\button3.xml" />
+    <None Include="Assets\UIProject\assets\HitTest\component1.xml" />
+    <None Include="Assets\UIProject\assets\HitTest\package.xml" />
+    <None Include="Assets\UIProject\assets\HomePage\Main.xml" />
+    <None Include="Assets\UIProject\assets\HomePage\package.xml" />
+    <None Include="Assets\UIProject\assets\Joystick\Main.xml" />
+    <None Include="Assets\UIProject\assets\Joystick\circle.xml" />
+    <None Include="Assets\UIProject\assets\Joystick\package.xml" />
+    <None Include="Assets\UIProject\assets\LoopList\Main.xml" />
+    <None Include="Assets\UIProject\assets\LoopList\item.xml" />
+    <None Include="Assets\UIProject\assets\LoopList\package.xml" />
+    <None Include="Assets\UIProject\assets\ModalWaiting\Button1.xml" />
+    <None Include="Assets\UIProject\assets\ModalWaiting\CloseButton.xml" />
+    <None Include="Assets\UIProject\assets\ModalWaiting\GlobalModalWaiting.xml" />
+    <None Include="Assets\UIProject\assets\ModalWaiting\Main.xml" />
+    <None Include="Assets\UIProject\assets\ModalWaiting\TestWin.xml" />
+    <None Include="Assets\UIProject\assets\ModalWaiting\WindowFrame.xml" />
+    <None Include="Assets\UIProject\assets\ModalWaiting\WindowModalWaiting.xml" />
+    <None Include="Assets\UIProject\assets\ModalWaiting\package.xml" />
+    <None Include="Assets\UIProject\assets\Model\Main.xml" />
+    <None Include="Assets\UIProject\assets\Model\package.xml" />
+    <None Include="Assets\UIProject\assets\Particles\CoolComponent.xml" />
+    <None Include="Assets\UIProject\assets\Particles\Main.xml" />
+    <None Include="Assets\UIProject\assets\Particles\package.xml" />
+    <None Include="Assets\UIProject\assets\Perspective\Main.xml" />
+    <None Include="Assets\UIProject\assets\Perspective\Panel.xml" />
+    <None Include="Assets\UIProject\assets\Perspective\Panel2.xml" />
+    <None Include="Assets\UIProject\assets\Perspective\button1.xml" />
+    <None Include="Assets\UIProject\assets\Perspective\mailItem.xml" />
+    <None Include="Assets\UIProject\assets\Perspective\package.xml" />
+    <None Include="Assets\UIProject\assets\PullToRefresh\Button1.xml" />
+    <None Include="Assets\UIProject\assets\PullToRefresh\Button2.xml" />
+    <None Include="Assets\UIProject\assets\PullToRefresh\Footer.xml" />
+    <None Include="Assets\UIProject\assets\PullToRefresh\Header.xml" />
+    <None Include="Assets\UIProject\assets\PullToRefresh\Main.xml" />
+    <None Include="Assets\UIProject\assets\PullToRefresh\item.xml" />
+    <None Include="Assets\UIProject\assets\PullToRefresh\package.xml" />
+    <None Include="Assets\UIProject\assets\RenderTexture\Button1.xml" />
+    <None Include="Assets\UIProject\assets\RenderTexture\ButtonLeft.xml" />
+    <None Include="Assets\UIProject\assets\RenderTexture\ButtonRight.xml" />
+    <None Include="Assets\UIProject\assets\RenderTexture\CloseButton.xml" />
+    <None Include="Assets\UIProject\assets\RenderTexture\Main.xml" />
+    <None Include="Assets\UIProject\assets\RenderTexture\TestWin.xml" />
+    <None Include="Assets\UIProject\assets\RenderTexture\WindowFrame.xml" />
+    <None Include="Assets\UIProject\assets\RenderTexture\package.xml" />
+    <None Include="Assets\UIProject\assets\ScrollPane\Box.xml" />
+    <None Include="Assets\UIProject\assets\ScrollPane\Button1.xml" />
+    <None Include="Assets\UIProject\assets\ScrollPane\Button2.xml" />
+    <None Include="Assets\UIProject\assets\ScrollPane\Main.xml" />
+    <None Include="Assets\UIProject\assets\ScrollPane\item.xml" />
+    <None Include="Assets\UIProject\assets\ScrollPane\package.xml" />
+    <None Include="Assets\UIProject\assets\Transition\BOSS.xml" />
+    <None Include="Assets\UIProject\assets\Transition\BOSS_SKILL.xml" />
+    <None Include="Assets\UIProject\assets\Transition\Button1.xml" />
+    <None Include="Assets\UIProject\assets\Transition\GoodHit.xml" />
+    <None Include="Assets\UIProject\assets\Transition\Main.xml" />
+    <None Include="Assets\UIProject\assets\Transition\PowerUp.xml" />
+    <None Include="Assets\UIProject\assets\Transition\TRAP.xml" />
+    <None Include="Assets\UIProject\assets\Transition\number1.fnt" />
+    <None Include="Assets\UIProject\assets\Transition\number2.fnt" />
+    <None Include="Assets\UIProject\assets\Transition\number3.fnt" />
+    <None Include="Assets\UIProject\assets\Transition\package.xml" />
+    <None Include="Assets\UIProject\assets\TreeView\Main.xml" />
+    <None Include="Assets\UIProject\assets\TreeView\TreeExpandButton.xml" />
+    <None Include="Assets\UIProject\assets\TreeView\TreeItem.xml" />
+    <None Include="Assets\UIProject\assets\TreeView\package.xml" />
+    <None Include="Assets\UIProject\assets\TurnCard\CardComponent.xml" />
+    <None Include="Assets\UIProject\assets\TurnCard\Main.xml" />
+    <None Include="Assets\UIProject\assets\TurnCard\package.xml" />
+    <None Include="Assets\UIProject\assets\TypingEffect\Main.xml" />
+    <None Include="Assets\UIProject\assets\TypingEffect\package.xml" />
+    <None Include="Assets\UIProject\assets\VirtualList\Button1.xml" />
+    <None Include="Assets\UIProject\assets\VirtualList\Main.xml" />
+    <None Include="Assets\UIProject\assets\VirtualList\mailItem.xml" />
+    <None Include="Assets\UIProject\assets\VirtualList\package.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="GenerateTargetFrameworkMonikerAttribute" />
+</Project>

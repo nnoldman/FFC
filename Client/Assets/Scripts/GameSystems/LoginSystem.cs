@@ -25,9 +25,12 @@ public class LoginSystem: GameSystem<LoginSystem> {
     public void Login(string user, string psw) {
         this.user = user;
         this.passWord = psw;
+        Cmd.ReqAccountOperation req = new Cmd.ReqAccountOperation();
+        req.action = Cmd.AccountAction.AccountAction_Login;
+        req.user = user;
+        req.password = psw;
         //------------------------------------------------------
-
-        Nets.Send(Cmd.CLIENT_COMMAND.RQLogin);
+        Nets.Send(Cmd.CLIENT_COMMAND.RQAccountOperation, req);
         PlayerPrefs.SetString(kUserKey, user);
         PlayerPrefs.SetString(kPasswordKey, psw);
     }

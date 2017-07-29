@@ -153,13 +153,8 @@ public class Nets : BaseController {
             mMainSocket.connectLoginServer(ServerIp, ServerPort, user, psd, serverid.ToString());
     }
 
-    public void ConnectServer(string host, int port, string user, string psd, int serverid) {
+    public void ConnectServer(string host, int port,object data) {
         mMainSocket.connectLoginServer(host, port, user, psd, serverid.ToString());
-    }
-
-
-    public void ConnectServerBySDK(string host, int port, string user, string psd, int serverid) {
-        mMainSocket.connectLoginServerBySDK(host, port, user, serverid.ToString());
     }
 
     public void Disconnect() {
@@ -228,7 +223,7 @@ public class Nets : BaseController {
         Instance.mMainSocket.send(sSerializeBuffer);
     }
 
-    public static void Send<T>(Cmd.CLIENT_COMMAND msgid, T protodata) where T : ICommand {
+    public static void Send<T>(Cmd.CLIENT_COMMAND msgid, T protodata) where T : ProtoBuf.IExtensible {
         if (!isConnected)
             return;
         MemoryStream stream = new MemoryStream();
