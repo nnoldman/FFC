@@ -15,6 +15,8 @@ public class Startup : MonoBehaviour {
     }
 
     IEnumerator OnStartEnd() {
+        Nets.Instance = new Nets();
+        yield return Nets.Instance.initialize();
         UIController.Instance.Show<HomePageWindow>();
         yield return null;
     }

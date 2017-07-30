@@ -23,11 +23,11 @@ public class Loader : BaseController {
     }
 
 
-    public override IEnumerator Initialize() {
+    public override IEnumerator initialize() {
         yield return null;
     }
 
-    public override IEnumerator OnGameStageClose() {
+    public override IEnumerator onGameStageClose() {
         yield return null;
     }
 }

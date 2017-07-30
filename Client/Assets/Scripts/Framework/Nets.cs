@@ -3,25 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using UnityEngine;
 
 public class Nets : BaseController {
-    static Nets msInstance = null;
     public static Nets Instance {
-        get {
-            return msInstance;
-        }
+        set;
+        get;
     }
 
-    public Nets() {
-        msInstance = this;
-    }
-
-    public override IEnumerator Initialize() {
-        mClientId = SystemInfo.deviceUniqueIdentifier;
+    public override IEnumerator initialize() {
         InitSocket();
-        Debug.Log("NetManager Start ");
         yield return null;
     }
 
@@ -30,35 +23,11 @@ public class Nets : BaseController {
     }
 
     public override void Update() {
-        if (mMainSocket != null)
-            mMainSocket.UpdateMessageQueue();
+        if (mSocketBase != null)
+            mSocketBase.UpdateMessageQueue();
     }
 
-    public enum EServerIpList {
-        Local = 0,
-        Lan_04 = 1,
-        Lan_13 = 2,
-        Lan_16 = 3,
-        Public = 4,
-    }
-
-    public enum EPlatform {
-        Device = 0,
-        GameCenter = 1,
-    }
-    public enum EServer {
-        Server1,
-        Server2,
-        Server3,
-        Server4,
-        Server5,
-    }
-
-
-    // member functions.
-    string mClientId = null;
-
-    SocketBase mMainSocket;
+    SocketBase mSocketBase;
 
     public string ServerIp = "169.254.1.200";
     public int ServerPort = 15299;
@@ -66,44 +35,30 @@ public class Nets : BaseController {
     public UInt64 _dwUserID;
     public uint _loginTempID;
     public ushort _port;
+    public float HeartBeatTime = 20f + 20f;
+    float mServerTimeMark = 0;
+    private static MemoryStream sSerializeBuffer = new MemoryStream(2 << 15);
 
-    public string ClientId {
-        get {
-            return mClientId;
-        }
-        set {
-            mClientId = value;
-        }
-    }
-    public string ClientUserName {
-        get;
-        set;
-    }
+    private Connection mCurrentConnectArgs;
+
     public bool Interrupting {
         get {
-            if (mMainSocket != null) return mMainSocket.Interrupted;
+            if (mSocketBase != null) return mSocketBase.Interrupted;
             return false;
         }
     }
     public SocketBase MainSocket {
         get {
-            return mMainSocket;
+            return mSocketBase;
         }
     }
-
-    public EServerIpList Server = EServerIpList.Local;
-    public EPlatform Platform = EPlatform.Device;
-    public EServer ServerID;
-
     public bool connecting {
         get {
-            return mMainSocket != null && mMainSocket.TryConnecting;
+            return mSocketBase != null && mSocketBase.TryConnecting;
         }
     }
 
-    public float HeartBeatTime = 20f + 20f;
 
-    float mServerTimeMark = 0;
 
     public void OnTimeSet() {
         //Debug.LogWarning(string.Format("OnTimeSet:{0}", Time.time));
@@ -112,21 +67,20 @@ public class Nets : BaseController {
 
     public uint serverTime {
         get {
-            if (mMainSocket != null) {
-                return (uint)(mMainSocket.lastServerTime + Time.realtimeSinceStartup - mServerTimeMark);
+            if (mSocketBase != null) {
+                return (uint)(mSocketBase.lastServerTime + Time.realtimeSinceStartup - mServerTimeMark);
             }
             return 0;
         }
     }
 
-    private static MemoryStream sSerializeBuffer = new MemoryStream(2 << 15);
 
     void InitSocket() {
-        if (mMainSocket == null) {
+        if (mSocketBase == null) {
             if (Application.isPlaying) {
-                mMainSocket = new SocketBase();
-                mMainSocket.messageHandler += DispathBytes;
-                mMainSocket.errorHandler += OnNetEvent;
+                mSocketBase = new SocketBase();
+                mSocketBase.messageHandler += dispatchMessage;
+                mSocketBase.errorHandler += OnNetEvent;
             }
         }
     }
@@ -135,68 +89,61 @@ public class Nets : BaseController {
     }
 
     public void InterruptMessageLoop() {
-        if (mMainSocket != null)
-            mMainSocket.Interrupted = true;
+        if (mSocketBase != null)
+            mSocketBase.Interrupted = true;
     }
     public void ResumeMessageLoop() {
-        if (mMainSocket != null)
-            mMainSocket.Interrupted = false;
+        if (mSocketBase != null)
+            mSocketBase.Interrupted = false;
     }
 
-    public void ConnectLoginServer(string user, string psd) {
-#if !UNITY_EDITOR
-        int serverid = (int)EServer.Server2 + 1;
-#else
-        int serverid = (int)ServerID + 1;
-#endif
-        if (mMainSocket != null)
-            mMainSocket.connectLoginServer(ServerIp, ServerPort, user, psd, serverid.ToString());
-    }
-
-    public void ConnectServer(string host, int port,object data) {
-        mMainSocket.connectLoginServer(host, port, user, psd, serverid.ToString());
+    public void connect(Connection connection) {
+        mCurrentConnectArgs = new Connection();
+        if (mSocketBase != null) {
+            mSocketBase.connect(connection);
+        }
     }
 
     public void Disconnect() {
-        if (mMainSocket != null)
-            mMainSocket.Closed(NetEventID.ActiveDisconnect);
+        if (mSocketBase != null)
+            mSocketBase.Closed(NetEventID.ActiveDisconnect);
     }
 
     public static void SendBuffer(int msgid, byte[] data) {
         if (!isConnected)
             return;
 
-        stClientUnityUserCmd sendcmd = new stClientUnityUserCmd();
-        sendcmd.messageid = (uint)msgid;
+        ProtocoBuffer sendcmd = new ProtocoBuffer();
+        sendcmd.id = (uint)msgid;
         sendcmd.size = (uint)data.Length;
         sendcmd.data = data;
-        SendCmd(sendcmd);
+        sendCommand(sendcmd);
     }
 
-    static void SendCmd<T>(T cmd) where T : ICmdBase {
+    static void sendCommand<T>(T cmd) where T : ProtocoBuffer {
         sSerializeBuffer.Position = 0;
         cmd.serialize(sSerializeBuffer);
-        Instance.mMainSocket.send(sSerializeBuffer);
+        Instance.mSocketBase.send(sSerializeBuffer);
     }
 
-    public static void SendID(int msgid) {
+    public static void sendCommand(int msgid) {
         if (!isConnected)
             return;
 
         if (!isConnected)
             return;
-        stClientUnityUserCmd sendcmd = new stClientUnityUserCmd();
-        sendcmd.messageid = (uint)msgid;
-        SendCmd(sendcmd);
+        var cmd = new ProtocoBuffer();
+        cmd.id = (uint)msgid;
+        sendCommand(cmd);
     }
 
 
-    public static void SendByServerID(Cmd.CLIENT_COMMAND msgid) {
+    public static void sendCommand(Cmd.CLIENT_COMMAND msgid) {
         if (!isConnected)
             return;
-        stClientUnityUserCmd sendcmd = new stClientUnityUserCmd();
-        sendcmd.messageid = (uint)msgid;
-        SendCmd(sendcmd);
+        var proto = new ProtocoBuffer();
+        proto.id = (uint)msgid;
+        sendCommand(proto);
 
         //LogClass.Instance.LogSend(sendcmd);
     }
@@ -204,67 +151,61 @@ public class Nets : BaseController {
         get {
             if (Instance == null)
                 return false;
-            if (Instance.mMainSocket == null)
+            if (Instance.mSocketBase == null)
                 return false;
-            if (!Instance.mMainSocket.connected)
+            if (!Instance.mSocketBase.connected)
                 return false;
             return true;
         }
     }
-    public static void Send(Cmd.CLIENT_COMMAND msgid) {
-        SendByServerID((Cmd.CLIENT_COMMAND)msgid);
-    }
 
-    public static void Send(ICmdBase cmd) {
+    public static void send(ProtocoBuffer cmd) {
         if (!isConnected)
             return;
         sSerializeBuffer.Position = 0;
         cmd.serialize(sSerializeBuffer);
-        Instance.mMainSocket.send(sSerializeBuffer);
+        Instance.mSocketBase.send(sSerializeBuffer);
     }
 
-    public static void Send<T>(Cmd.CLIENT_COMMAND msgid, T protodata) where T : ProtoBuf.IExtensible {
+    public static void send<T>(Cmd.CLIENT_COMMAND msgid, T protodata) where T : ProtoBuf.IExtensible {
         if (!isConnected)
             return;
         MemoryStream stream = new MemoryStream();
         ProtoBuf.Serializer.Serialize<T>(stream, protodata);
 
-        stClientUnityUserCmd sendcmd = new stClientUnityUserCmd();
-        sendcmd.messageid = (uint)msgid;
-        sendcmd.size = (uint)stream.ToArray().Length;
-        sendcmd.data = new byte[sendcmd.size];
-        Array.Copy(stream.GetBuffer(), sendcmd.data, sendcmd.size);
+        ProtocoBuffer proto = new ProtocoBuffer();
+        proto.id = (uint)msgid;
+        proto.size = (uint)stream.ToArray().Length;
+        proto.data = new byte[proto.size];
+        Array.Copy(stream.GetBuffer(), proto.data, proto.size);
 
-        SendCmd(sendcmd);
-        //LogClass.Instance.LogSend(protodata);
+        sendCommand(proto);
     }
-    public static T Parse<T>(byte[] msg) where T : ICommand {
+    public static T parse<T>(byte[] msg) where T : ICommand {
         MemoryStream stream = new MemoryStream(msg);
         T protoBuffer = ProtoBuf.Serializer.Deserialize<T>(stream);
-        //LogClass.Instance.LogReceive(protoBuffer);
         return protoBuffer;
     }
-    public static object Parse(byte[] msg, Type tp) {
+    public static object parse(byte[] msg, Type tp) {
         MemoryStream stream = new MemoryStream(msg);
         object protoBuffer = ProtoBuf.Serializer.NonGeneric.Deserialize(tp, stream);
-        // LogClass.Instance.LogReceive(protoBuffer);
         return protoBuffer;
     }
 
-    public static T ParseCmd<T>(byte[] msg) where T : ICmdBase {
+    public static T parseCommand<T>(byte[] msg) where T : ProtocoBuffer {
         Type tp = typeof(T);
         T cmd = (T)tp.GetConstructor(Type.EmptyTypes).Invoke(null);
-        cmd.unserialize(new MemoryStream(msg));
+        cmd.deserialize(new MemoryStream(msg));
         return cmd;
     }
 
-    public void OnMsg(ref byte[] msg, uint msgId) {
+    public void onCommand(ref byte[] msg, uint msgId) {
     }
 
-    public void DispathBytes(byte[] byteArray) {
+    public void dispatchMessage(byte[] byteArray) {
     }
 
-    public override IEnumerator OnGameStageClose() {
+    public override IEnumerator onGameStageClose() {
         throw new NotImplementedException();
     }
 }

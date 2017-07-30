@@ -26,7 +26,7 @@ public class Updater: BaseController {
     }
 
 
-    public override IEnumerator Initialize() {
+    public override IEnumerator initialize() {
         yield return null;
     }
 
@@ -73,7 +73,7 @@ public class Updater: BaseController {
     public override void Update() {
     }
 
-    public override IEnumerator OnGameStageClose() {
+    public override IEnumerator onGameStageClose() {
         yield return null;
     }
 }

@@ -22,6 +22,15 @@ public enum NetEventID {
     Exception = 9,
 }
 
+public class Connection {
+    public string host;
+    public int port;
+    public object userToken;
+
+    public Action onConnectSucessed;
+    public Action<SocketError> onConnectFailed;
+}
+
 public class SocketBase {
     public delegate void MessageHanlder( byte[] data);
 
@@ -97,9 +106,9 @@ public class SocketBase {
         Closed(NetEventID.ActiveDisconnect);
     }
 
-    public void connectLoginServer(string host, int port,object data) {
+    public void connect(Connection connection) {
         Closed(NetEventID.CloseForInitialize);
-        IPAddress[] address = Dns.GetHostAddresses(host);
+        IPAddress[] address = Dns.GetHostAddresses(connection.host);
         if (address[0].AddressFamily == AddressFamily.InterNetworkV6) {
             Debug.Log("InterNetworkV6 " + address[0]);
             ClientSocket = new Socket(AddressFamily.InterNetworkV6, SocketType.Stream, ProtocolType.Tcp);
@@ -109,7 +118,7 @@ public class SocketBase {
         }
 
         IPAddress ipa = address[0];
-        IPEndPoint iep = new IPEndPoint(ipa, port);
+        IPEndPoint iep = new IPEndPoint(ipa, connection.port);
 
         try {
             ClientSocket.ReceiveTimeout = 2000;
@@ -120,7 +129,7 @@ public class SocketBase {
             SocketAsyncEventArgs args = new SocketAsyncEventArgs();
             args.Completed += Args_Completed;
             args.RemoteEndPoint = iep;
-            args.UserToken = data;
+            args.UserToken = connection;
             ClientSocket.ConnectAsync(args);
             mNetEvents.Add(NetEventID.BeginConnect);
         } catch (SocketException ex) {
@@ -133,17 +142,22 @@ public class SocketBase {
         e.Completed -= Args_Completed;
 
         SocketError error = e.SocketError;
-
+        Connection connection = (Connection)e.UserToken;
         try {
             switch (error) {
             case SocketError.Success: {
                 if (ClientSocket.Connected) {
+                    if (connection.onConnectSucessed!=null)
+                        connection.onConnectSucessed();
                 }
             }
             break;
-            default:
-                ProcessError(error, false);
-                break;
+            default: {
+                if (connection.onConnectFailed != null)
+                    connection.onConnectFailed(error);
+            }
+            ProcessError(error, false);
+            break;
             }
         } catch (SocketException ex) {
             Debug.Log(ex.Message);

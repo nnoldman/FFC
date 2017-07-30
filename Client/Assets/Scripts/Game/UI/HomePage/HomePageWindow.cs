@@ -5,6 +5,8 @@ using System.Text;
 using UnityEngine;
 
 public class HomePageWindow: View {
+    string host = "127.0.0.1";
+    int ip = 15299;
     HomePage.Main window {
         get {
             return (HomePage.Main)this.panel.ui;
@@ -20,6 +22,6 @@ public class HomePageWindow: View {
     }
 
     void Login() {
-        LoginSystem.Instance.Login(window.user.text, window.psw.text);
+        LoginSystem.Instance.LoginPlant(host,ip,window.user.text, window.psw.text);
     }
 }

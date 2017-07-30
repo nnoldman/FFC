@@ -62,14 +62,14 @@ public class UIController: BaseController {
         return ret;
     }
 
-    public override IEnumerator Initialize() {
+    public override IEnumerator initialize() {
         GRoot.inst.SetContentScaleFactor(1136, 640);
         UIPackage.AddPackage("UI/Basics");
         yield return null;
     }
 
 
-    public override IEnumerator OnGameStageClose() {
+    public override IEnumerator onGameStageClose() {
         throw new NotImplementedException();
     }
 }
