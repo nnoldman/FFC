@@ -62,6 +62,7 @@ public class LoginSystem: SystemBase {
 
     void OnPackage(object pb) {
         Cmd.RetAccountOperation oper = ProtoBuf.Serializer.Deserialize<Cmd.RetAccountOperation>((MemoryStream)pb);
+        Debug.Log("RetAccountOperation:" + oper.accountid.ToString());
         if (onLoginReturn != null)
             onLoginReturn.Invoke();
     }
