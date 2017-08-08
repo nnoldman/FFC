@@ -83,9 +83,9 @@ public class Flow {
         if (loadingView != null)
             loadingView.Show();
         if (!mStarted) {
-            yield return UIController.Instance.Initialize();
-            yield return Loader.Instance.Initialize();
-            yield return Updater.Instance.Initialize();
+            yield return UIController.Instance.initialize();
+            yield return Loader.Instance.initialize();
+            yield return Updater.Instance.initialize();
         } else {
             yield return this.Close();
         }
@@ -111,9 +111,9 @@ public class Flow {
     }
 
     public IEnumerator CloseGameStage() {
-        yield return UIController.Instance.OnGameStageClose();
-        yield return Loader.Instance.OnGameStageClose();
-        yield return Updater.Instance.OnGameStageClose();
+        yield return UIController.Instance.onGameStageClose();
+        yield return Loader.Instance.onGameStageClose();
+        yield return Updater.Instance.onGameStageClose();
     }
 }
 }

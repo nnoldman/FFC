@@ -22,6 +22,15 @@ public enum NetEventID {
     Exception = 9,
 }
 
+public class Connection {
+    public string host;
+    public int port;
+    public object userToken;
+
+    public Action onConnectSucessed;
+    public Action<SocketError> onConnectFailed;
+}
+
 public class SocketBase {
     public delegate void MessageHanlder( byte[] data);
 
@@ -76,10 +85,6 @@ public class SocketBase {
             _mGameTime = value;
         }
     }
-    //连接平台服务器，短连接
-    string mUser;
-    string mPsd;
-    string mServerID;
 
     public SocketBase() {
     }
@@ -101,14 +106,9 @@ public class SocketBase {
         Closed(NetEventID.ActiveDisconnect);
     }
 
-    public void connectLoginServer(string host, int port, string user, string psd, string serverid) {
+    public void connect(Connection connection) {
         Closed(NetEventID.CloseForInitialize);
-
-        mUser = user;
-        mPsd = psd;
-        mServerID = serverid;
-
-        IPAddress[] address = Dns.GetHostAddresses(host);
+        IPAddress[] address = Dns.GetHostAddresses(connection.host);
         if (address[0].AddressFamily == AddressFamily.InterNetworkV6) {
             Debug.Log("InterNetworkV6 " + address[0]);
             ClientSocket = new Socket(AddressFamily.InterNetworkV6, SocketType.Stream, ProtocolType.Tcp);
@@ -118,55 +118,18 @@ public class SocketBase {
         }
 
         IPAddress ipa = address[0];
-        IPEndPoint iep = new IPEndPoint(ipa, port);
+        IPEndPoint iep = new IPEndPoint(ipa, connection.port);
 
         try {
             ClientSocket.ReceiveTimeout = 2000;
             ClientSocket.SendTimeout = 2000;
             ClientSocket.ReceiveBufferSize = kBufferSize;
 
-            //ClientSocket.BeginConnect(iep, ConnectLoginServerCallBack, ClientSocket);
             RecreateNetReader();
             SocketAsyncEventArgs args = new SocketAsyncEventArgs();
             args.Completed += Args_Completed;
             args.RemoteEndPoint = iep;
-            ClientSocket.ConnectAsync(args);
-            mNetEvents.Add(NetEventID.BeginConnect);
-        } catch (SocketException ex) {
-            Debug.Log(ex.Message);
-            ProcessError(ex.SocketErrorCode, false);
-        }
-    }
-
-
-    public void connectLoginServerBySDK(string host, int port, string user, string serverid) {
-        Closed(NetEventID.CloseForInitialize);
-
-        mUser = user;
-        mServerID = serverid;
-        IPAddress[] address = Dns.GetHostAddresses(host);
-        if (address[0].AddressFamily == AddressFamily.InterNetworkV6) {
-            Debug.Log("InterNetworkV6 " + address[0]);
-            ClientSocket = new Socket(AddressFamily.InterNetworkV6, SocketType.Stream, ProtocolType.Tcp);
-        } else {
-            Debug.Log("InterNetwork " + address[0]);
-            ClientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-        }
-        //IPAddress ipa = IPAddress.Parse(host);
-        IPAddress ipa = address[0];
-        IPEndPoint iep = new IPEndPoint(ipa, port);
-
-        try {
-            ClientSocket.ReceiveTimeout = 2000;
-            ClientSocket.SendTimeout = 2000;
-            ClientSocket.ReceiveBufferSize = kBufferSize;
-
-            //ClientSocket.BeginConnect(iep, ConnectLoginServerCallBack, ClientSocket);
-            RecreateNetReader();
-
-            SocketAsyncEventArgs args = new SocketAsyncEventArgs();
-            args.Completed += Args_CompletedBySDK;
-            args.RemoteEndPoint = iep;
+            args.UserToken = connection;
             ClientSocket.ConnectAsync(args);
             mNetEvents.Add(NetEventID.BeginConnect);
         } catch (SocketException ex) {
@@ -179,42 +142,22 @@ public class SocketBase {
         e.Completed -= Args_Completed;
 
         SocketError error = e.SocketError;
-
+        Connection connection = (Connection)e.UserToken;
         try {
             switch (error) {
             case SocketError.Success: {
                 if (ClientSocket.Connected) {
-                    loginPlant(mUser, mPsd, mServerID);
+                    if (connection.onConnectSucessed!=null)
+                        connection.onConnectSucessed();
                 }
             }
             break;
-            default:
-                ProcessError(error, false);
-                break;
+            default: {
+                if (connection.onConnectFailed != null)
+                    connection.onConnectFailed(error);
             }
-        } catch (SocketException ex) {
-            Debug.Log(ex.Message);
-            ProcessError(ex.SocketErrorCode, false);
-        }
-    }
-
-    private void Args_CompletedBySDK(object sender, SocketAsyncEventArgs e) {
-        e.Completed -= Args_CompletedBySDK;
-
-        SocketError error = e.SocketError;
-
-        try {
-            switch (error) {
-            case SocketError.Success: {
-                if (ClientSocket.Connected) {
-                    Debug.Log("Read LoginFromSKD");
-                    Debug.Log("Read read");
-                }
-            }
+            ProcessError(error, false);
             break;
-            default:
-                ProcessError(error, false);
-                break;
             }
         } catch (SocketException ex) {
             Debug.Log(ex.Message);
@@ -249,32 +192,6 @@ public class SocketBase {
             throw new SocketException((int)error);
         }
         }
-    }
-
-    public void connectServer(ulong userid, uint tempid, string host, int port, Boolean isMainSocket = false) {
-        Closed(NetEventID.CloseForLoginGame);
-
-        IPAddress[] address = Dns.GetHostAddresses(host);
-        if (address[0].AddressFamily == AddressFamily.InterNetworkV6) {
-            ClientSocket = new Socket(AddressFamily.InterNetworkV6, SocketType.Stream, ProtocolType.Tcp);
-        } else {
-            ClientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-        }
-        ClientSocket.ReceiveBufferSize = kBufferSize;
-        RecreateNetReader();
-        //IPAddress ipa = IPAddress.Parse(host);
-        IPAddress ipa = address[0];
-        IPEndPoint iep = new IPEndPoint(ipa, port);
-        try {
-            ClientSocket.Connect(iep);//连接到服务器
-            loginGame(userid, tempid);
-
-        } catch (Exception ex) {
-            Debug.Log(ex.Message);
-        }
-
-        _isMainSocket = isMainSocket;
-
     }
 
     void ClientReceive() {
@@ -354,14 +271,6 @@ public class SocketBase {
         mHeader = 0;
     }
 
-    public void loginPlant(string user, string psd, string serverid) {
-    }
-
-    public void LoginFromSKD(string serverid, string userid, string userkey) {
-    }
-
-    public void loginGame(ulong userid, uint tempid) {
-    }
 
     public void send(MemoryStream data) {
         if (!ClientSocket.Connected)//判断Socket是否已连接
