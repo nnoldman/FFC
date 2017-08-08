@@ -203,6 +203,9 @@ public class Nets : BaseController {
     }
 
     public void dispatchMessage(byte[] byteArray) {
+        var protobuffer = new ProtocoBuffer();
+        protobuffer.deserialize(new MemoryStream(byteArray));
+        Commands.Instance.Trigger((Cmd.SERVER_COMMAND)protobuffer.id, new MemoryStream(protobuffer.data));
     }
 
     public override IEnumerator onGameStageClose() {

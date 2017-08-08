@@ -1,12 +1,15 @@
 ﻿using AppCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using UnityEngine;
 
-public class LoginSystem: GameSystem<LoginSystem> {
+public class LoginSystem: SystemBase {
+    public static LoginSystem Instance;
+
     public bool ret;
     public string user;
     public string passWord;
@@ -17,7 +20,6 @@ public class LoginSystem: GameSystem<LoginSystem> {
 
     const string kUserKey = "__user";
     const string kPasswordKey = "__psw";
-
     public LoginSystem() {
         user = PlayerPrefs.GetString(kUserKey, string.Empty);
         passWord = PlayerPrefs.GetString(kPasswordKey, string.Empty);
@@ -55,12 +57,12 @@ public class LoginSystem: GameSystem<LoginSystem> {
     }
 
     public override void BindListeners() {
-        //BindCommand<LoginResult>(CommandID.EnterGame, OnPackage);
+        Commands.Instance.Bind(Cmd.SERVER_COMMAND.RTAccountOperation, OnPackage);
     }
 
-    void OnPackage(LoginResult cmd) {
-        returnCode = cmd.returnCode;
-        roleIndex = cmd.roleIndex;
+    void OnPackage(object pb) {
+        Cmd.RetAccountOperation oper = ProtoBuf.Serializer.Deserialize<Cmd.RetAccountOperation>((MemoryStream)pb);
+        Debug.Log("RetAccountOperation:" + oper.accountid.ToString());
         if (onLoginReturn != null)
             onLoginReturn.Invoke();
     }

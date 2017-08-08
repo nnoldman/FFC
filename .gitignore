@@ -10,3 +10,6 @@
 /Client/Client.csproj
 /Client/Client.Editor.csproj
 /Client/Client.Editor.Plugins.csproj
+/Client/obj/Debug
+/Client/.vs/Client/v15/*.suo
+/Client/*.csproj

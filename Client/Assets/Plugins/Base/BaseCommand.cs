@@ -35,9 +35,9 @@ public class ProtocoBuffer {
     }
 
     public virtual void deserialize(MemoryStream stream) {
-        stream.Read(s4ByteBuffer, (int)stream.Position, 4);
+        stream.Read(s4ByteBuffer, 0, 4);
         size = BitConverter.ToUInt32(s4ByteBuffer, 0);
-        stream.Read(s4ByteBuffer, (int)stream.Position, 4);
+        stream.Read(s4ByteBuffer, 0, 4);
         id = BitConverter.ToUInt32(s4ByteBuffer, 0);
         try {
             data = new byte[size];

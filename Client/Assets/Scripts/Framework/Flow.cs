@@ -2,7 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using UnityEngine;
 
 namespace AppCore {
 public enum GameError {
@@ -103,13 +105,30 @@ public class Flow {
         }
 
         yield return game.Start();
-
+        yield return InitSystems();
         if (onStartEnd != null)
             yield return onStartEnd.Invoke();
         mStarted = true;
         yield return null;
     }
-
+    public IEnumerator InitSystems() {
+        Assembly asm = GetType().Assembly;
+        var types = asm.GetTypes();
+        foreach (var type in types) {
+            if (type.IsSubclassOf(typeof(SystemBase))) {
+                var instance = Activator.CreateInstance(type);
+                var filed = type.GetField("Instance", BindingFlags.Public | BindingFlags.Static);
+                if (filed == null) {
+                    Debug.LogError(string.Format("System {0} does not has Instance!"));
+                } else {
+                    filed.SetValue(null, instance);
+                    var system = (SystemBase)instance;
+                    if (system.timeConsuming)
+                        yield return system.Initialize();
+                }
+            }
+        }
+    }
     public IEnumerator CloseGameStage() {
         yield return UIController.Instance.onGameStageClose();
         yield return Loader.Instance.onGameStageClose();
