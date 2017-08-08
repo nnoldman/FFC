@@ -21,6 +21,5 @@ public class GameSystem<T> : SystemBase, IEventSender where T : SystemBase, new(
     }
 
     protected void BindCommand<T>(Cmd.SERVER_COMMAND id, Action<T> callback) where T : ICommand {
-        Commands.Instance.Bind((int)id, callback);
     }
 }
