@@ -315,8 +315,7 @@ public class SocketBase {
 
             for (; i < mCommandList.Count; i++) {
                 byte[] data = mCommandList[i];
-
-                if(messageHandler != null)
+                if(data.Length > 0 && messageHandler != null)
                     messageHandler(data);
 
                 if (Interrupted) {

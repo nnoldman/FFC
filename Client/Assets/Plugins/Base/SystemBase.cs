@@ -5,10 +5,14 @@ using System.Linq;
 using System.Text;
 
 public class SystemBase {
-    protected bool timeConsuming = false;
+    public bool timeConsuming {
+        get;
+        protected set;
+    }
 
     public SystemBase() {
         mSystems.Add(this);
+        BindListeners();
     }
 
     public static List<SystemBase> mSystems = new List<SystemBase>();

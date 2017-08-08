@@ -38,6 +38,11 @@ public class Startup : MonoBehaviour {
         }
     }
 
+    void Update() {
+        if (Nets.Instance != null)
+            Nets.Instance.Update();
+    }
+
     void OnDestroy() {
     }
 }

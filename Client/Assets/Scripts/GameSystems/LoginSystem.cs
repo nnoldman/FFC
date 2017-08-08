@@ -7,7 +7,9 @@ using System.Net.Sockets;
 using System.Text;
 using UnityEngine;
 
-public class LoginSystem: GameSystem<LoginSystem> {
+public class LoginSystem: SystemBase {
+    public static LoginSystem Instance;
+
     public bool ret;
     public string user;
     public string passWord;
@@ -18,7 +20,6 @@ public class LoginSystem: GameSystem<LoginSystem> {
 
     const string kUserKey = "__user";
     const string kPasswordKey = "__psw";
-
     public LoginSystem() {
         user = PlayerPrefs.GetString(kUserKey, string.Empty);
         passWord = PlayerPrefs.GetString(kPasswordKey, string.Empty);
