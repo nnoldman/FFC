@@ -7,7 +7,8 @@ using System.Net.Sockets;
 using System.Text;
 using UnityEngine;
 
-public class LoginSystem: SystemBase {
+public class LoginSystem: SystemBase
+{
     public static LoginSystem Instance;
 
     public bool ret;
@@ -20,7 +21,8 @@ public class LoginSystem: SystemBase {
 
     const string kUserKey = "__user";
     const string kPasswordKey = "__psw";
-    public LoginSystem() {
+    public LoginSystem()
+    {
         user = PlayerPrefs.GetString(kUserKey, string.Empty);
         passWord = PlayerPrefs.GetString(kPasswordKey, string.Empty);
     }
@@ -30,7 +32,8 @@ public class LoginSystem: SystemBase {
     string mUser;
     string mPassword;
 
-    public void LoginPlant(string host,int port,string user, string psw) {
+    public void LoginPlant(string host,int port,string user, string psw)
+    {
         mUser = user;
         mPassword = psw;
         mAccountConnection = new Connection();
@@ -44,7 +47,8 @@ public class LoginSystem: SystemBase {
         PlayerPrefs.SetString(kPasswordKey, psw);
     }
 
-    void onConnectAccountSucess() {
+    void onConnectAccountSucess()
+    {
         Cmd.ReqAccountOperation req = new Cmd.ReqAccountOperation();
         req.action = Cmd.AccountAction.AccountAction_Login;
         req.user = mUser;
@@ -52,18 +56,23 @@ public class LoginSystem: SystemBase {
         Nets.send(Cmd.CLIENT_COMMAND.RQAccountOperation, req);
     }
 
-    void onConnectAccountFailed(SocketError error) {
+    void onConnectAccountFailed(SocketError error)
+    {
         Debug.LogWarning("onConnectAccountFailed:" + error.ToString());
     }
 
-    public override void BindListeners() {
+    public override void BindListeners()
+    {
         Commands.Instance.Bind(Cmd.SERVER_COMMAND.RTAccountOperation, OnPackage);
     }
 
-    void OnPackage(object pb) {
+    void OnPackage(object pb)
+    {
         Cmd.RetAccountOperation oper = ProtoBuf.Serializer.Deserialize<Cmd.RetAccountOperation>((MemoryStream)pb);
         Debug.Log("RetAccountOperation:" + oper.accountid.ToString());
         if (onLoginReturn != null)
             onLoginReturn.Invoke();
+
+        UIController.Instance.Show<LoginSelectServer>();
     }
 }

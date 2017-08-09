@@ -3,9 +3,9 @@
 using FairyGUI;
 using FairyGUI.Utils;
 
-namespace HomePage
+namespace Login
 {
-	public partial class Main : GComponent
+	public partial class LoginPlant : GComponent
 	{
 		public GTextInput user;
 		public GTextInput psw;
@@ -14,12 +14,12 @@ namespace HomePage
 
 		public const string URL = "ui://3aca1ugukr711";
 
-		public static Main CreateInstance()
+		public static LoginPlant CreateInstance()
 		{
-			return (Main)UIPackage.CreateObject("HomePage","Main");
+			return (LoginPlant)UIPackage.CreateObject("Login","LoginPlant");
 		}
 
-		public Main()
+		public LoginPlant()
 		{
 		}
 
@@ -27,10 +27,10 @@ namespace HomePage
 		{
 			base.ConstructFromXML(xml);
 
-			user = (GTextInput)this.GetChildAt(3);
-			psw = (GTextInput)this.GetChildAt(4);
-			login = (GButton)this.GetChildAt(5);
-			exit = (GButton)this.GetChildAt(6);
+			user = (GTextInput)this.GetChild("user");
+			psw = (GTextInput)this.GetChild("psw");
+			login = (GButton)this.GetChild("login");
+			exit = (GButton)this.GetChild("exit");
 		}
 	}
 }

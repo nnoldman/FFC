@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="576,1024">
+  <displayList>
+    <graph id="n0_fl9n" name="n0" xy="63,172" size="450,600" type="rect" fillColor="#ff333333"/>
+    <list id="n1_fl9n" name="serverList" xy="78,198" size="418,527" overflow="scroll" defaultItem="ui://3aca1ugufl9n3">
+      <item/>
+      <item/>
+      <item/>
+      <item/>
+    </list>
+  </displayList>
+</component>
