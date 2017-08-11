@@ -36,4 +36,16 @@ public class LoginSelectServer : View
         var item = (Login.ServerItem)context.data;
         item.name_.text = "selected";
     }
+
+    void SetCurrentServer()
+    {
+
+    }
+
+    protected override void OnShowMe()
+    {
+        if(LoginSystem.Instance.lateServerIDs!=null)
+        {
+        }
+    }
 }

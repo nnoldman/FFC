@@ -24,7 +24,7 @@ namespace Basics
 		{
 			base.ConstructFromXML(xml);
 
-			frame = (WindowFrame)this.GetChildAt(0);
+			frame = (WindowFrame)this.GetChild("frame");
 		}
 	}
 }

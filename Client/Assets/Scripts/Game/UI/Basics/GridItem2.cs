@@ -27,10 +27,10 @@ namespace Basics
 		{
 			base.ConstructFromXML(xml);
 
-			t3 = (GTextField)this.GetChildAt(2);
-			t1 = (GTextField)this.GetChildAt(4);
-			cb = (GButton)this.GetChildAt(5);
-			mc = (GMovieClip)this.GetChildAt(6);
+			t3 = (GTextField)this.GetChild("t3");
+			t1 = (GTextField)this.GetChild("t1");
+			cb = (GButton)this.GetChild("cb");
+			mc = (GMovieClip)this.GetChild("mc");
 		}
 	}
 }

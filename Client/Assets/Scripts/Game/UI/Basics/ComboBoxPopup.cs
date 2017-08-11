@@ -24,7 +24,7 @@ namespace Basics
 		{
 			base.ConstructFromXML(xml);
 
-			list = (GList)this.GetChildAt(1);
+			list = (GList)this.GetChild("list");
 		}
 	}
 }

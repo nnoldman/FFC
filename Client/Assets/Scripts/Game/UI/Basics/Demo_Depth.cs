@@ -25,8 +25,8 @@ namespace Basics
 		{
 			base.ConstructFromXML(xml);
 
-			btn0 = (GButton)this.GetChildAt(2);
-			btn1 = (GButton)this.GetChildAt(3);
+			btn0 = (GButton)this.GetChild("btn0");
+			btn1 = (GButton)this.GetChild("btn1");
 		}
 	}
 }

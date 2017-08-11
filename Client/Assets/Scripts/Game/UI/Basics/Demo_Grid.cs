@@ -25,8 +25,8 @@ namespace Basics
 		{
 			base.ConstructFromXML(xml);
 
-			list1 = (GList)this.GetChildAt(2);
-			list2 = (GList)this.GetChildAt(10);
+			list1 = (GList)this.GetChild("list1");
+			list2 = (GList)this.GetChild("list2");
 		}
 	}
 }

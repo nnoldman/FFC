@@ -25,8 +25,8 @@ namespace Basics
 		{
 			base.ConstructFromXML(xml);
 
-			grayed = this.GetControllerAt(1);
-			bg = (GImage)this.GetChildAt(0);
+			grayed = this.GetController("grayed");
+			bg = (GImage)this.GetChild("bg");
 		}
 	}
 }
