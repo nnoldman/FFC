@@ -25,8 +25,8 @@ namespace Basics
 		{
 			base.ConstructFromXML(xml);
 
-			frame = (WindowFrameB)this.GetChildAt(0);
-			t1 = this.GetTransitionAt(0);
+			frame = (WindowFrameB)this.GetChild("frame");
+			t1 = this.GetTransition("t1");
 		}
 	}
 }

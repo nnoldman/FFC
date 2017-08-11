@@ -24,7 +24,7 @@ namespace Basics
 		{
 			base.ConstructFromXML(xml);
 
-			c1 = this.GetControllerAt(0);
+			c1 = this.GetController("c1");
 		}
 	}
 }

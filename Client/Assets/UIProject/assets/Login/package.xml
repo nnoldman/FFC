@@ -4,6 +4,7 @@
     <component id="kr711" name="LoginPlant.xml" path="/" exported="true"/>
     <component id="fl9n2" name="SelectServer.xml" path="/" exported="true"/>
     <component id="fl9n3" name="ServerItem.xml" path="/" exported="true"/>
+    <component id="fpms8" name="EnterGame.xml" path="/" exported="true"/>
   </resources>
   <publish name="Login" genCode="true"/>
 </packageDescription>

@@ -24,16 +24,42 @@ public class LoginSelectServer : View
     {
         window.serverList.RemoveChildrenToPool();
         window.serverList.onClickItem.Add(OnSelectServer);
-        for(int i=0; i<5; ++i)
+        window.enterGame.onClick.Add(OnClickEnterGame);
+        for (int i = 0; i < GameConfig.GameServers.Length; ++i)
         {
+            var server = GameConfig.GameServers[i];
             var item = (Login.ServerItem)window.serverList.AddItemFromPool().asCom;
-            item.name_.text = (i + 1).ToString() + "Zone";
+            item.name_.text = server.name;
+            item.data = server;
         }
+    }
+
+    void OnClickEnterGame()
+    {
     }
 
     void OnSelectServer(EventContext context)
     {
         var item = (Login.ServerItem)context.data;
-        item.name_.text = "selected";
+        var server = (GameServer)item.data;
+        LoginSystem.Instance.currentServerID = server.serverID;
+        SetCurrentServer();
+    }
+
+    void SetCurrentServer()
+    {
+        if (LoginSystem.Instance.currentServerID > 0)
+        {
+            this.window.currentServer.text = string.Format("{0}服", LoginSystem.Instance.currentServerID);
+        }
+        else
+        {
+            this.window.currentServer.text = string.Empty;
+        }
+    }
+
+    protected override void OnShowMe()
+    {
+        SetCurrentServer();
     }
 }

@@ -8,6 +8,8 @@ namespace Login
 	public partial class SelectServer : GComponent
 	{
 		public GList serverList;
+		public GTextField currentServer;
+		public GButton enterGame;
 
 		public const string URL = "ui://3aca1ugufl9n2";
 
@@ -25,6 +27,8 @@ namespace Login
 			base.ConstructFromXML(xml);
 
 			serverList = (GList)this.GetChild("serverList");
+			currentServer = (GTextField)this.GetChild("currentServer");
+			enterGame = (GButton)this.GetChild("enterGame");
 		}
 	}
 }

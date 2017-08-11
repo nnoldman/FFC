@@ -67,6 +67,13 @@ namespace Cmd
       get { return _accountid; }
       set { _accountid = value; }
     }
+    private readonly global::System.Collections.Generic.List<int> _late_serverids = new global::System.Collections.Generic.List<int>();
+    [global::ProtoBuf.ProtoMember(4, Name=@"late_serverids", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    public global::System.Collections.Generic.List<int> late_serverids
+    {
+      get { return _late_serverids; }
+    }
+  
     private global::ProtoBuf.IExtension extensionObject;
     global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
       { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
