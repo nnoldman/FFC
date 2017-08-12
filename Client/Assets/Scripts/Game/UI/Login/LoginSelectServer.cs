@@ -62,4 +62,16 @@ public class LoginSelectServer : View
     {
         SetCurrentServer();
     }
+
+    void SetCurrentServer()
+    {
+
+    }
+
+    protected override void OnShowMe()
+    {
+        if(LoginSystem.Instance.lateServerIDs!=null)
+        {
+        }
+    }
 }
