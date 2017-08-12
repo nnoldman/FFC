@@ -4,42 +4,54 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace AppCore {
+namespace AppCore
+{
 
-public enum ShowMode {
+public enum ShowMode
+{
     None,
     FullScreen,
     Window,
     Model,
 }
 
-public class ViewBase : Window {
+public class ViewBase : Window
+{
     public UIPanel panel;
 
-    public virtual void Start() {
+    protected virtual void BindListeners()
+    {
     }
 
-    protected void OnActive() {
-        OnShown();
-        BindListeners();
+    protected virtual void RemoveEvents()
+    {
     }
 
-    protected void OnDeactive() {
-        RemoveEvents();
-        OnHide();
+    protected virtual void OnShowMe()
+    {
+    }
+    protected virtual void OnHideMe()
+    {
     }
 
-    protected virtual void OnStart() {
+    protected sealed override void OnHide()
+    {
+        this.panel.gameObject.SetActive(false);
+        this.OnHideMe();
+        this.RemoveEvents();
     }
-    protected virtual void OnDestroy() {
-    }
-    protected virtual void BindListeners() {
-    }
-    protected virtual void RemoveEvents() {
+
+    protected override sealed void OnShown()
+    {
+        this.panel.gameObject.SetActive(true);
+        this.OnShowMe();
+        this.BindListeners();
     }
 }
 
-public interface INetUser {
+
+public interface INetUser
+{
 }
 
 }

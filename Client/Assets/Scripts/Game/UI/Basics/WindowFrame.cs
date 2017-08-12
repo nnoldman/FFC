@@ -26,9 +26,9 @@ namespace Basics
 		{
 			base.ConstructFromXML(xml);
 
-			closeButton = (GButton)this.GetChildAt(1);
-			dragArea = (GGraph)this.GetChildAt(2);
-			contentArea = (GGraph)this.GetChildAt(4);
+			closeButton = (GButton)this.GetChild("closeButton");
+			dragArea = (GGraph)this.GetChild("dragArea");
+			contentArea = (GGraph)this.GetChild("contentArea");
 		}
 	}
 }

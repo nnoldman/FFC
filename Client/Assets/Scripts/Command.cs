@@ -67,6 +67,13 @@ namespace Cmd
       get { return _accountid; }
       set { _accountid = value; }
     }
+    private readonly global::System.Collections.Generic.List<int> _late_serverids = new global::System.Collections.Generic.List<int>();
+    [global::ProtoBuf.ProtoMember(4, Name=@"late_serverids", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    public global::System.Collections.Generic.List<int> late_serverids
+    {
+      get { return _late_serverids; }
+    }
+  
     private global::ProtoBuf.IExtension extensionObject;
     global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
       { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
@@ -84,6 +91,96 @@ namespace Cmd
       get { return _accountid; }
       set { _accountid = value; }
     }
+    private int _time;
+    [global::ProtoBuf.ProtoMember(2, IsRequired = true, Name=@"time", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    public int time
+    {
+      get { return _time; }
+      set { _time = value; }
+    }
+    private string _token;
+    [global::ProtoBuf.ProtoMember(3, IsRequired = true, Name=@"token", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    public string token
+    {
+      get { return _token; }
+      set { _token = value; }
+    }
+    private global::ProtoBuf.IExtension extensionObject;
+    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
+  }
+  
+  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"GameRole")]
+  public partial class GameRole : global::ProtoBuf.IExtensible
+  {
+    public GameRole() {}
+    
+    private int _id;
+    [global::ProtoBuf.ProtoMember(1, IsRequired = true, Name=@"id", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    public int id
+    {
+      get { return _id; }
+      set { _id = value; }
+    }
+    private int _level;
+    [global::ProtoBuf.ProtoMember(2, IsRequired = true, Name=@"level", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    public int level
+    {
+      get { return _level; }
+      set { _level = value; }
+    }
+    private string _name;
+    [global::ProtoBuf.ProtoMember(3, IsRequired = true, Name=@"name", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    public string name
+    {
+      get { return _name; }
+      set { _name = value; }
+    }
+    private int _sex;
+    [global::ProtoBuf.ProtoMember(4, IsRequired = true, Name=@"sex", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    public int sex
+    {
+      get { return _sex; }
+      set { _sex = value; }
+    }
+    private int _job;
+    [global::ProtoBuf.ProtoMember(5, IsRequired = true, Name=@"job", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    public int job
+    {
+      get { return _job; }
+      set { _job = value; }
+    }
+    private int _vip;
+    [global::ProtoBuf.ProtoMember(6, IsRequired = true, Name=@"vip", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    public int vip
+    {
+      get { return _vip; }
+      set { _vip = value; }
+    }
+    private global::ProtoBuf.IExtension extensionObject;
+    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
+      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
+  }
+  
+  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"RetLoginGameServer")]
+  public partial class RetLoginGameServer : global::ProtoBuf.IExtensible
+  {
+    public RetLoginGameServer() {}
+    
+    private Cmd.LoginGameServerErrorCode _error;
+    [global::ProtoBuf.ProtoMember(1, IsRequired = true, Name=@"error", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    public Cmd.LoginGameServerErrorCode error
+    {
+      get { return _error; }
+      set { _error = value; }
+    }
+    private readonly global::System.Collections.Generic.List<Cmd.GameRole> _roles = new global::System.Collections.Generic.List<Cmd.GameRole>();
+    [global::ProtoBuf.ProtoMember(2, Name=@"roles", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    public global::System.Collections.Generic.List<Cmd.GameRole> roles
+    {
+      get { return _roles; }
+    }
+  
     private global::ProtoBuf.IExtension extensionObject;
     global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
       { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
@@ -130,6 +227,20 @@ namespace Cmd
             
       [global::ProtoBuf.ProtoEnum(Name=@"AccountErrorCode_LoginSucessed", Value=5)]
       AccountErrorCode_LoginSucessed = 5
+    }
+  
+    [global::ProtoBuf.ProtoContract(Name=@"LoginGameServerErrorCode")]
+    public enum LoginGameServerErrorCode
+    {
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"Sucess", Value=0)]
+      Sucess = 0,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"Overdue", Value=1)]
+      Overdue = 1,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"Invalid", Value=2)]
+      Invalid = 2
     }
   
 }

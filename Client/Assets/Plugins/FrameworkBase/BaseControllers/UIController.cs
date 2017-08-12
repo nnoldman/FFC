@@ -6,10 +6,13 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace AppCore {
+namespace AppCore
+{
 
-public class UIController: BaseController {
-    public static UIController Instance {
+public class UIController: BaseController
+{
+    public static UIController Instance
+    {
         set;
         get;
     }
@@ -19,24 +22,36 @@ public class UIController: BaseController {
     public Dictionary<string, ViewBase> mViews = new Dictionary<string, ViewBase>();
 
 
-    public T Show<T>() where T : ViewBase, new() {
+    public T Show<T>(bool only = true) where T : ViewBase, new()
+    {
         T ret = Get<T>();
-        if(ret != null) {
+        if(ret != null)
+        {
+            if (only)
+            {
+                foreach (var view in mViews)
+                    view.Value.Hide();
+                GRoot.inst.CloseAllWindows();
+            }
             ret.Show();
         }
         return ret;
     }
 
-    public T Hide<T>() where T : ViewBase, new() {
+    public T Hide<T>() where T : ViewBase, new()
+    {
         return default(T);
     }
 
-    public T Get<T>() where T : ViewBase, new() {
+    public T Get<T>() where T : ViewBase, new()
+    {
         ViewBase ret;
         string name = typeof(T).Name;
-        if (!mViews.TryGetValue(name, out ret)) {
+        if (!mViews.TryGetValue(name, out ret))
+        {
             ret = LoadView<T>(name);
-            if(ret != null) {
+            if(ret != null)
+            {
                 mViews.Add(name, ret);
             }
         }
@@ -46,9 +61,11 @@ public class UIController: BaseController {
             return null;
     }
 
-    public T LoadView<T>(string name) where T : ViewBase, new () {
+    public T LoadView<T>(string name) where T : ViewBase, new ()
+    {
         var sceneObject = Loader.Instance.Create<GameObject>("GUI/" + name);
-        if (!sceneObject) {
+        if (!sceneObject)
+        {
             Debug.LogError("Error Path:" + "GUI" + name);
             return null;
         }
@@ -62,14 +79,16 @@ public class UIController: BaseController {
         return ret;
     }
 
-    public override IEnumerator initialize() {
-        GRoot.inst.SetContentScaleFactor(1136, 640);
+    public override IEnumerator initialize()
+    {
+        GRoot.inst.SetContentScaleFactor(576, 1024);
         UIPackage.AddPackage("UI/Basics");
         yield return null;
     }
 
 
-    public override IEnumerator onGameStageClose() {
+    public override IEnumerator onGameStageClose()
+    {
         throw new NotImplementedException();
     }
 }

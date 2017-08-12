@@ -26,9 +26,9 @@ namespace Basics
 		{
 			base.ConstructFromXML(xml);
 
-			c1 = this.GetControllerAt(0);
-			c2 = this.GetControllerAt(1);
-			switchBtn = (GButton)this.GetChildAt(13);
+			c1 = this.GetController("c1");
+			c2 = this.GetController("c2");
+			switchBtn = (GButton)this.GetChild("switchBtn");
 		}
 	}
 }

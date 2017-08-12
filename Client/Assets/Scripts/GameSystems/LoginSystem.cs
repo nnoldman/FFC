@@ -7,7 +7,16 @@ using System.Net.Sockets;
 using System.Text;
 using UnityEngine;
 
-public class LoginSystem: SystemBase {
+public class GameServer
+{
+    public string host;
+    public string name;
+    public int port;
+    public int serverID;
+}
+
+public class LoginSystem: SystemBase
+{
     public static LoginSystem Instance;
 
     public bool ret;
@@ -16,54 +25,76 @@ public class LoginSystem: SystemBase {
     public int roleIndex;
     public LOGIN_RETURN_CODE returnCode;
 
-    public event GameEventHandler onLoginReturn;
-
     const string kUserKey = "__user";
     const string kPasswordKey = "__psw";
-    public LoginSystem() {
+
+    public LoginSystem()
+    {
         user = PlayerPrefs.GetString(kUserKey, string.Empty);
         passWord = PlayerPrefs.GetString(kPasswordKey, string.Empty);
     }
+    public List<int> lateServerIDs = new List<int>();
+    public GameServer currentServer;
 
-    Connection mAccountConnection;
-    Connection mGameConnection;
-    string mUser;
-    string mPassword;
+    private Connection accountConnection_;
+    private Connection mGameConnection;
 
-    public void LoginPlant(string host,int port,string user, string psw) {
-        mUser = user;
-        mPassword = psw;
-        mAccountConnection = new Connection();
-        mAccountConnection.host = host;
-        mAccountConnection.port = port;
-        mAccountConnection.onConnectFailed = onConnectAccountFailed;
-        mAccountConnection.onConnectSucessed = onConnectAccountSucess;
-        Nets.Instance.connect(mAccountConnection);
+    private string user_;
+    private string password_;
+    private int accountID_;
+
+    public void LoginPlant(string host,int port,string user, string psw)
+    {
+        user_ = user;
+        password_ = psw;
+        accountConnection_ = new Connection();
+        accountConnection_.host = host;
+        accountConnection_.port = port;
+        accountConnection_.onConnectFailed = onConnectAccountFailed;
+        accountConnection_.onConnectSucessed = onConnectAccountSucess;
+        Nets.Instance.connect(accountConnection_);
 
         PlayerPrefs.SetString(kUserKey, user);
         PlayerPrefs.SetString(kPasswordKey, psw);
     }
 
-    void onConnectAccountSucess() {
+    void onConnectAccountSucess()
+    {
         Cmd.ReqAccountOperation req = new Cmd.ReqAccountOperation();
         req.action = Cmd.AccountAction.AccountAction_Login;
-        req.user = mUser;
-        req.password = mPassword;
+        req.user = user_;
+        req.password = password_;
         Nets.send(Cmd.CLIENT_COMMAND.RQAccountOperation, req);
     }
 
-    void onConnectAccountFailed(SocketError error) {
+    void onConnectAccountFailed(SocketError error)
+    {
         Debug.LogWarning("onConnectAccountFailed:" + error.ToString());
     }
 
-    public override void BindListeners() {
+    public override void BindListeners()
+    {
         Commands.Instance.Bind(Cmd.SERVER_COMMAND.RTAccountOperation, OnPackage);
     }
 
-    void OnPackage(object pb) {
-        Cmd.RetAccountOperation oper = ProtoBuf.Serializer.Deserialize<Cmd.RetAccountOperation>((MemoryStream)pb);
-        Debug.Log("RetAccountOperation:" + oper.accountid.ToString());
-        if (onLoginReturn != null)
-            onLoginReturn.Invoke();
+
+
+    void OnPackage(object pb)
+    {
+        Cmd.RetAccountOperation ret = ParseCmd<Cmd.RetAccountOperation>(pb);
+        this.accountID_ = ret.accountid;
+        this.lateServerIDs.Clear();
+        this.lateServerIDs.AddRange(ret.late_serverids);
+        foreach(var id in this.lateServerIDs)
+        {
+            if(id!=0)
+            {
+                currentServer = GameConfig.GetServer(id);
+                break;
+            }
+        }
+
+        Debug.Log("RetAccountOperation:" + ret.accountid.ToString());
+        UIController.Instance.Show<LoginSelectServer>();
     }
 }
