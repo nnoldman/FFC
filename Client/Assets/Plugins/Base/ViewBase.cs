@@ -34,14 +34,14 @@ public class ViewBase : Window
     {
     }
 
-    override protected void OnHide()
+    protected sealed override void OnHide()
     {
         this.panel.gameObject.SetActive(false);
         this.OnHideMe();
         this.RemoveEvents();
     }
 
-    override protected void OnShown()
+    protected override sealed void OnShown()
     {
         this.panel.gameObject.SetActive(true);
         this.OnShowMe();

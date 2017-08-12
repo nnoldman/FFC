@@ -42,15 +42,15 @@ public class LoginSelectServer : View
     {
         var item = (Login.ServerItem)context.data;
         var server = (GameServer)item.data;
-        LoginSystem.Instance.currentServerID = server.serverID;
+        LoginSystem.Instance.currentServer = server;
         SetCurrentServer();
     }
 
     void SetCurrentServer()
     {
-        if (LoginSystem.Instance.currentServerID > 0)
+        if (LoginSystem.Instance.currentServer !=null)
         {
-            this.window.currentServer.text = string.Format("{0}服", LoginSystem.Instance.currentServerID);
+            this.window.currentServer.text = LoginSystem.Instance.currentServer.name;
         }
         else
         {
@@ -61,17 +61,5 @@ public class LoginSelectServer : View
     protected override void OnShowMe()
     {
         SetCurrentServer();
-    }
-
-    void SetCurrentServer()
-    {
-
-    }
-
-    protected override void OnShowMe()
-    {
-        if(LoginSystem.Instance.lateServerIDs!=null)
-        {
-        }
     }
 }

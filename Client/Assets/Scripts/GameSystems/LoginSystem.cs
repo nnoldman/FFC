@@ -34,7 +34,7 @@ public class LoginSystem: SystemBase
         passWord = PlayerPrefs.GetString(kPasswordKey, string.Empty);
     }
     public List<int> lateServerIDs = new List<int>();
-    public int currentServerID;
+    public GameServer currentServer;
 
     private Connection accountConnection_;
     private Connection mGameConnection;
@@ -77,6 +77,8 @@ public class LoginSystem: SystemBase
         Commands.Instance.Bind(Cmd.SERVER_COMMAND.RTAccountOperation, OnPackage);
     }
 
+
+
     void OnPackage(object pb)
     {
         Cmd.RetAccountOperation ret = ParseCmd<Cmd.RetAccountOperation>(pb);
@@ -87,7 +89,7 @@ public class LoginSystem: SystemBase
         {
             if(id!=0)
             {
-                currentServerID = id;
+                currentServer = GameConfig.GetServer(id);
                 break;
             }
         }

@@ -18,7 +18,10 @@ namespace Cmd
       RQLoginGameServer = 100,
             
       [global::ProtoBuf.ProtoEnum(Name=@"RQAccountOperation", Value=300)]
-      RQAccountOperation = 300
+      RQAccountOperation = 300,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"RQLoginGame", Value=400)]
+      RQLoginGame = 400
     }
   
     [global::ProtoBuf.ProtoContract(Name=@"SERVER_COMMAND")]
@@ -29,7 +32,10 @@ namespace Cmd
       RTLoginGameServer = 100,
             
       [global::ProtoBuf.ProtoEnum(Name=@"RTAccountOperation", Value=300)]
-      RTAccountOperation = 300
+      RTAccountOperation = 300,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"RTLoginGame", Value=400)]
+      RTLoginGame = 400
     }
   
 }
