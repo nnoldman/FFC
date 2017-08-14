@@ -53,22 +53,29 @@ namespace Cmd
       get { return _error; }
       set { _error = value; }
     }
-    private string _password;
-    [global::ProtoBuf.ProtoMember(2, IsRequired = true, Name=@"password", DataFormat = global::ProtoBuf.DataFormat.Default)]
-    public string password
-    {
-      get { return _password; }
-      set { _password = value; }
-    }
     private int _accountid;
-    [global::ProtoBuf.ProtoMember(3, IsRequired = true, Name=@"accountid", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::ProtoBuf.ProtoMember(2, IsRequired = true, Name=@"accountid", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
     public int accountid
     {
       get { return _accountid; }
       set { _accountid = value; }
     }
+    private int _time;
+    [global::ProtoBuf.ProtoMember(3, IsRequired = true, Name=@"time", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    public int time
+    {
+      get { return _time; }
+      set { _time = value; }
+    }
+    private string _token;
+    [global::ProtoBuf.ProtoMember(4, IsRequired = true, Name=@"token", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    public string token
+    {
+      get { return _token; }
+      set { _token = value; }
+    }
     private readonly global::System.Collections.Generic.List<int> _late_serverids = new global::System.Collections.Generic.List<int>();
-    [global::ProtoBuf.ProtoMember(4, Name=@"late_serverids", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::ProtoBuf.ProtoMember(5, Name=@"late_serverids", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
     public global::System.Collections.Generic.List<int> late_serverids
     {
       get { return _late_serverids; }
