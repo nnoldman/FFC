@@ -24,7 +24,10 @@ namespace Cmd
       RQLoginGame = 400,
             
       [global::ProtoBuf.ProtoEnum(Name=@"RQCreateRole", Value=500)]
-      RQCreateRole = 500
+      RQCreateRole = 500,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"RQEnterGame", Value=600)]
+      RQEnterGame = 600
     }
   
     [global::ProtoBuf.ProtoContract(Name=@"SERVERID")]
@@ -41,7 +44,10 @@ namespace Cmd
       RTLoginGame = 400,
             
       [global::ProtoBuf.ProtoEnum(Name=@"RTCreateRole", Value=500)]
-      RTCreateRole = 500
+      RTCreateRole = 500,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"RTMainUser", Value=600)]
+      RTMainUser = 600
     }
   
 }
