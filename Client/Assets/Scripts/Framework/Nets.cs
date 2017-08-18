@@ -7,22 +7,27 @@ using System.Net.Sockets;
 using System.Text;
 using UnityEngine;
 
-public class Nets : BaseController {
-    public static Nets Instance {
+public class Nets : BaseController
+{
+    public static Nets Instance
+    {
         set;
         get;
     }
 
-    public override IEnumerator initialize() {
+    public override IEnumerator initialize()
+    {
         InitSocket();
         yield return null;
     }
 
-    public override void OnMapReady() {
+    public override void OnMapReady()
+    {
         //this.ResumeMessageLoop();
     }
 
-    public override void Update() {
+    public override void Update()
+    {
         if (mSocketBase != null)
             mSocketBase.UpdateMessageQueue();
     }
@@ -41,33 +46,43 @@ public class Nets : BaseController {
 
     private Connection mCurrentConnectArgs;
 
-    public bool Interrupting {
-        get {
+    public bool Interrupting
+    {
+        get
+        {
             if (mSocketBase != null) return mSocketBase.Interrupted;
             return false;
         }
     }
-    public SocketBase MainSocket {
-        get {
+    public SocketBase MainSocket
+    {
+        get
+        {
             return mSocketBase;
         }
     }
-    public bool connecting {
-        get {
+    public bool connecting
+    {
+        get
+        {
             return mSocketBase != null && mSocketBase.TryConnecting;
         }
     }
 
 
 
-    public void OnTimeSet() {
+    public void OnTimeSet()
+    {
         //Debug.LogWarning(string.Format("OnTimeSet:{0}", Time.time));
         mServerTimeMark = Time.realtimeSinceStartup;
     }
 
-    public uint serverTime {
-        get {
-            if (mSocketBase != null) {
+    public uint serverTime
+    {
+        get
+        {
+            if (mSocketBase != null)
+            {
                 return (uint)(mSocketBase.lastServerTime + Time.realtimeSinceStartup - mServerTimeMark);
             }
             return 0;
@@ -75,9 +90,12 @@ public class Nets : BaseController {
     }
 
 
-    void InitSocket() {
-        if (mSocketBase == null) {
-            if (Application.isPlaying) {
+    void InitSocket()
+    {
+        if (mSocketBase == null)
+        {
+            if (Application.isPlaying)
+            {
                 mSocketBase = new SocketBase();
                 mSocketBase.messageHandler += dispatchMessage;
                 mSocketBase.errorHandler += OnNetEvent;
@@ -85,31 +103,38 @@ public class Nets : BaseController {
         }
     }
 
-    void OnNetEvent(int id) {
+    void OnNetEvent(int id)
+    {
     }
 
-    public void InterruptMessageLoop() {
+    public void InterruptMessageLoop()
+    {
         if (mSocketBase != null)
             mSocketBase.Interrupted = true;
     }
-    public void ResumeMessageLoop() {
+    public void ResumeMessageLoop()
+    {
         if (mSocketBase != null)
             mSocketBase.Interrupted = false;
     }
 
-    public void connect(Connection connection) {
+    public void connect(Connection connection)
+    {
         mCurrentConnectArgs = new Connection();
-        if (mSocketBase != null) {
+        if (mSocketBase != null)
+        {
             mSocketBase.connect(connection);
         }
     }
 
-    public void Disconnect() {
+    public void Disconnect()
+    {
         if (mSocketBase != null)
             mSocketBase.Closed(NetEventID.ActiveDisconnect);
     }
 
-    public static void SendBuffer(int msgid, byte[] data) {
+    public static void SendBuffer(int msgid, byte[] data)
+    {
         if (!isConnected)
             return;
 
@@ -120,13 +145,15 @@ public class Nets : BaseController {
         sendCommand(sendcmd);
     }
 
-    static void sendCommand<T>(T cmd) where T : ProtocoBuffer {
+    static void sendCommand<T>(T cmd) where T : ProtocoBuffer
+    {
         sSerializeBuffer.Position = 0;
         cmd.serialize(sSerializeBuffer);
         Instance.mSocketBase.send(sSerializeBuffer);
     }
 
-    public static void sendCommand(int msgid) {
+    public static void sendCommand(int msgid)
+    {
         if (!isConnected)
             return;
 
@@ -138,7 +165,8 @@ public class Nets : BaseController {
     }
 
 
-    public static void sendCommand(Cmd.CLIENT_COMMAND msgid) {
+    public static void sendCommand(Cmd.CLIENTID msgid)
+    {
         if (!isConnected)
             return;
         var proto = new ProtocoBuffer();
@@ -147,8 +175,10 @@ public class Nets : BaseController {
 
         //LogClass.Instance.LogSend(sendcmd);
     }
-    public static bool isConnected {
-        get {
+    public static bool isConnected
+    {
+        get
+        {
             if (Instance == null)
                 return false;
             if (Instance.mSocketBase == null)
@@ -159,7 +189,8 @@ public class Nets : BaseController {
         }
     }
 
-    public static void send(ProtocoBuffer cmd) {
+    public static void send(ProtocoBuffer cmd)
+    {
         if (!isConnected)
             return;
         sSerializeBuffer.Position = 0;
@@ -167,7 +198,8 @@ public class Nets : BaseController {
         Instance.mSocketBase.send(sSerializeBuffer);
     }
 
-    public static void send<T>(Cmd.CLIENT_COMMAND msgid, T protodata) where T : ProtoBuf.IExtensible {
+    public static void send<T>(Cmd.CLIENTID msgid, T protodata) where T : ProtoBuf.IExtensible
+    {
         if (!isConnected)
             return;
         MemoryStream stream = new MemoryStream();
@@ -181,34 +213,40 @@ public class Nets : BaseController {
 
         sendCommand(proto);
     }
-    public static T parse<T>(byte[] msg) where T : ICommand {
+    public static T parse<T>(byte[] msg) where T : ICommand
+    {
         MemoryStream stream = new MemoryStream(msg);
         T protoBuffer = ProtoBuf.Serializer.Deserialize<T>(stream);
         return protoBuffer;
     }
-    public static object parse(byte[] msg, Type tp) {
+    public static object parse(byte[] msg, Type tp)
+    {
         MemoryStream stream = new MemoryStream(msg);
         object protoBuffer = ProtoBuf.Serializer.NonGeneric.Deserialize(tp, stream);
         return protoBuffer;
     }
 
-    public static T parseCommand<T>(byte[] msg) where T : ProtocoBuffer {
+    public static T parseCommand<T>(byte[] msg) where T : ProtocoBuffer
+    {
         Type tp = typeof(T);
         T cmd = (T)tp.GetConstructor(Type.EmptyTypes).Invoke(null);
         cmd.deserialize(new MemoryStream(msg));
         return cmd;
     }
 
-    public void onCommand(ref byte[] msg, uint msgId) {
+    public void onCommand(ref byte[] msg, uint msgId)
+    {
     }
 
-    public void dispatchMessage(byte[] byteArray) {
+    public void dispatchMessage(byte[] byteArray)
+    {
         var protobuffer = new ProtocoBuffer();
         protobuffer.deserialize(new MemoryStream(byteArray));
-        Commands.Instance.Trigger((Cmd.SERVER_COMMAND)protobuffer.id, new MemoryStream(protobuffer.data));
+        Commands.Instance.Trigger((Cmd.SERVERID)protobuffer.id, new MemoryStream(protobuffer.data));
     }
 
-    public override IEnumerator onGameStageClose() {
+    public override IEnumerator onGameStageClose()
+    {
         throw new NotImplementedException();
     }
 }
