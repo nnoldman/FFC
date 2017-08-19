@@ -7,9 +7,16 @@
     <component id="fpms8" name="EnterGame.xml" path="/" exported="true"/>
     <image id="mgqm9" name="tit1.png" path="/" exported="true"/>
     <image id="mgqma" name="底纹2.png" path="/" exported="true"/>
-    <image id="mgqmb" name="底纹3.png" path="/" exported="true"/>
+    <image id="mgqmb" name="底纹3.png" path="/" exported="true" scale="9grid" scale9grid="9,8,18,16"/>
     <image id="mgqmc" name="底纹12.png" path="/" exported="true"/>
-    <image id="mgqmd" name="底纹12的.png" path="/" exported="true"/>
+    <image id="mgqmd" name="底纹12的.png" path="/" exported="true" scale="9grid" scale9grid="15,15,23,19"/>
+    <component id="ktwie" name="CreateRole.xml" path="/" exported="true"/>
+    <component id="ktwif" name="RoleList.xml" path="/"/>
+    <component id="bdlag" name="SexGroup.xml" path="/"/>
+    <component id="bdlah" name="Sex0.xml" path="/"/>
+    <component id="bdlak" name="Enterg2.xml" path="/"/>
+    <component id="qjoql" name="Name.xml" path="/"/>
+    <component id="qjoqm" name="Create.xml" path="/"/>
   </resources>
   <publish name="Login" genCode="true"/>
 </packageDescription>

@@ -100,12 +100,20 @@ public class LoginSystem: SystemBase
 
     public override void BindListeners()
     {
-        Commands.Instance.Bind(Cmd.SERVERID.RTAccountOperation, OnPackage);
+        Commands.Instance.Bind(Cmd.SERVERID.RTAccountOperation, OnAccountReturn);
+        Commands.Instance.Bind(Cmd.SERVERID.RTLoginGame, OnLoginGameReturn);
     }
 
+    void OnLoginGameReturn(object pb)
+    {
+        var ret = ParseCmd<Cmd.RetLoginGameServer>(pb);
+        Debug.Log("OnLoginGameReturn:" + ret.error.ToString());
+        if (ret.error == Cmd.LoginGameServerErrorCode.Sucess)
+        {
 
-
-    void OnPackage(object pb)
+        }
+    }
+    void OnAccountReturn(object pb)
     {
         Cmd.RetAccountOperation ret = ParseCmd<Cmd.RetAccountOperation>(pb);
         preOperation_ = ret;
