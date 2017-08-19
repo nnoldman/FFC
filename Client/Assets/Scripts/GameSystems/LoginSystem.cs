@@ -37,11 +37,13 @@ public class LoginSystem: SystemBase
     public GameServer currentServer;
 
     private Connection accountConnection_;
-    private Connection mGameConnection;
+    private Connection gameConnection_;
 
     private string user_;
     private string password_;
     private int accountID_;
+
+    private Cmd.RetAccountOperation preOperation_;
 
     public void LoginPlant(string host,int port,string user, string psw)
     {
@@ -58,13 +60,37 @@ public class LoginSystem: SystemBase
         PlayerPrefs.SetString(kPasswordKey, psw);
     }
 
+    public void LoginGame(string host, int port)
+    {
+        gameConnection_ = new Connection();
+        gameConnection_.host = host;
+        gameConnection_.port = port;
+        gameConnection_.onConnectFailed = onConnectGameFailed;
+        gameConnection_.onConnectSucessed = onConnectGameSucess;
+        Nets.Instance.connect(gameConnection_);
+    }
+
+    void onConnectGameFailed(SocketError error)
+    {
+        Debug.LogWarning("onConnectGameFailed:" + error.ToString());
+    }
+
+    void onConnectGameSucess()
+    {
+        Cmd.ReqLoginGameServer req = new Cmd.ReqLoginGameServer();
+        req.time = preOperation_.time;
+        req.token = preOperation_.token;
+        req.accountid = preOperation_.accountid;
+        Nets.send(Cmd.CLIENTID.RQLoginGame, req);
+    }
+
     void onConnectAccountSucess()
     {
         Cmd.ReqAccountOperation req = new Cmd.ReqAccountOperation();
         req.action = Cmd.AccountAction.AccountAction_Login;
         req.user = user_;
         req.password = password_;
-        Nets.send(Cmd.CLIENT_COMMAND.RQAccountOperation, req);
+        Nets.send(Cmd.CLIENTID.RQAccountOperation, req);
     }
 
     void onConnectAccountFailed(SocketError error)
@@ -74,14 +100,23 @@ public class LoginSystem: SystemBase
 
     public override void BindListeners()
     {
-        Commands.Instance.Bind(Cmd.SERVER_COMMAND.RTAccountOperation, OnPackage);
+        Commands.Instance.Bind(Cmd.SERVERID.RTAccountOperation, OnAccountReturn);
+        Commands.Instance.Bind(Cmd.SERVERID.RTLoginGame, OnLoginGameReturn);
     }
 
+    void OnLoginGameReturn(object pb)
+    {
+        var ret = ParseCmd<Cmd.RetLoginGameServer>(pb);
+        Debug.Log("OnLoginGameReturn:" + ret.error.ToString());
+        if (ret.error == Cmd.LoginGameServerErrorCode.Sucess)
+        {
 
-
-    void OnPackage(object pb)
+        }
+    }
+    void OnAccountReturn(object pb)
     {
         Cmd.RetAccountOperation ret = ParseCmd<Cmd.RetAccountOperation>(pb);
+        preOperation_ = ret;
         this.accountID_ = ret.accountid;
         this.lateServerIDs.Clear();
         this.lateServerIDs.AddRange(ret.late_serverids);

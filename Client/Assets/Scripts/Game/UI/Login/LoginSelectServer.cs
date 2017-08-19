@@ -36,6 +36,8 @@ public class LoginSelectServer : View
 
     void OnClickEnterGame()
     {
+        var server = LoginSystem.Instance.currentServer;
+        LoginSystem.Instance.LoginGame(server.host, server.port);
     }
 
     void OnSelectServer(EventContext context)

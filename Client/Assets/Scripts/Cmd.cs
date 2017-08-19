@@ -10,8 +10,8 @@
 // Generated from: Cmd.proto
 namespace Cmd
 {
-    [global::ProtoBuf.ProtoContract(Name=@"CLIENT_COMMAND")]
-    public enum CLIENT_COMMAND
+    [global::ProtoBuf.ProtoContract(Name=@"CLIENTID")]
+    public enum CLIENTID
     {
             
       [global::ProtoBuf.ProtoEnum(Name=@"RQLoginGameServer", Value=100)]
@@ -21,11 +21,17 @@ namespace Cmd
       RQAccountOperation = 300,
             
       [global::ProtoBuf.ProtoEnum(Name=@"RQLoginGame", Value=400)]
-      RQLoginGame = 400
+      RQLoginGame = 400,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"RQCreateRole", Value=500)]
+      RQCreateRole = 500,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"RQEnterGame", Value=600)]
+      RQEnterGame = 600
     }
   
-    [global::ProtoBuf.ProtoContract(Name=@"SERVER_COMMAND")]
-    public enum SERVER_COMMAND
+    [global::ProtoBuf.ProtoContract(Name=@"SERVERID")]
+    public enum SERVERID
     {
             
       [global::ProtoBuf.ProtoEnum(Name=@"RTLoginGameServer", Value=100)]
@@ -35,7 +41,13 @@ namespace Cmd
       RTAccountOperation = 300,
             
       [global::ProtoBuf.ProtoEnum(Name=@"RTLoginGame", Value=400)]
-      RTLoginGame = 400
+      RTLoginGame = 400,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"RTCreateRole", Value=500)]
+      RTCreateRole = 500,
+            
+      [global::ProtoBuf.ProtoEnum(Name=@"RTMainUser", Value=600)]
+      RTMainUser = 600
     }
   
 }
