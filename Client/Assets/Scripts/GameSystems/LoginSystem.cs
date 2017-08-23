@@ -113,6 +113,7 @@ public class LoginSystem: SystemBase
 
         }
     }
+
     void OnAccountReturn(object pb)
     {
         Cmd.RetAccountOperation ret = ParseCmd<Cmd.RetAccountOperation>(pb);
@@ -122,7 +123,7 @@ public class LoginSystem: SystemBase
         this.lateServerIDs.AddRange(ret.late_serverids);
         foreach(var id in this.lateServerIDs)
         {
-            if(id!=0)
+            if (id != 0)
             {
                 currentServer = GameConfig.GetServer(id);
                 break;

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<component size="292,57" extention="Button">
-  <displayList>
-    <image id="n7_bdla" name="n7" src="mgqma" xy="0,0" size="292,57"/>
-  </displayList>
-  <Button downEffect="dark" downEffectValue="0.80"/>
-</component>
