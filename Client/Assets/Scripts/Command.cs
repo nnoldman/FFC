@@ -181,13 +181,13 @@ namespace Cmd
       get { return _error; }
       set { _error = value; }
     }
-    private readonly global::System.Collections.Generic.List<Cmd.GameRole> _roles = new global::System.Collections.Generic.List<Cmd.GameRole>();
-    [global::ProtoBuf.ProtoMember(2, Name=@"roles", DataFormat = global::ProtoBuf.DataFormat.Default)]
-    public global::System.Collections.Generic.List<Cmd.GameRole> roles
+    private Cmd.GameRole _role;
+    [global::ProtoBuf.ProtoMember(2, IsRequired = true, Name=@"role", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    public Cmd.GameRole role
     {
-      get { return _roles; }
+      get { return _role; }
+      set { _role = value; }
     }
-  
     private global::ProtoBuf.IExtension extensionObject;
     global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
       { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
@@ -198,29 +198,22 @@ namespace Cmd
   {
     public ReqCreateRole() {}
     
-    private int _index0;
-    [global::ProtoBuf.ProtoMember(1, IsRequired = true, Name=@"index0", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
-    public int index0
-    {
-      get { return _index0; }
-      set { _index0 = value; }
-    }
     private int _sex;
-    [global::ProtoBuf.ProtoMember(2, IsRequired = true, Name=@"sex", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::ProtoBuf.ProtoMember(1, IsRequired = true, Name=@"sex", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
     public int sex
     {
       get { return _sex; }
       set { _sex = value; }
     }
     private int _job;
-    [global::ProtoBuf.ProtoMember(3, IsRequired = true, Name=@"job", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::ProtoBuf.ProtoMember(2, IsRequired = true, Name=@"job", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
     public int job
     {
       get { return _job; }
       set { _job = value; }
     }
     private string _name;
-    [global::ProtoBuf.ProtoMember(4, IsRequired = true, Name=@"name", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::ProtoBuf.ProtoMember(3, IsRequired = true, Name=@"name", DataFormat = global::ProtoBuf.DataFormat.Default)]
     public string name
     {
       get { return _name; }
@@ -243,64 +236,40 @@ namespace Cmd
       get { return _error; }
       set { _error = value; }
     }
-    private int _index0;
-    [global::ProtoBuf.ProtoMember(2, IsRequired = true, Name=@"index0", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
-    public int index0
-    {
-      get { return _index0; }
-      set { _index0 = value; }
-    }
     private int _roleID;
-    [global::ProtoBuf.ProtoMember(3, IsRequired = true, Name=@"roleID", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::ProtoBuf.ProtoMember(2, IsRequired = true, Name=@"roleID", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
     public int roleID
     {
       get { return _roleID; }
       set { _roleID = value; }
     }
     private string _name;
-    [global::ProtoBuf.ProtoMember(4, IsRequired = true, Name=@"name", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::ProtoBuf.ProtoMember(3, IsRequired = true, Name=@"name", DataFormat = global::ProtoBuf.DataFormat.Default)]
     public string name
     {
       get { return _name; }
       set { _name = value; }
     }
     private int _sex;
-    [global::ProtoBuf.ProtoMember(5, IsRequired = true, Name=@"sex", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::ProtoBuf.ProtoMember(4, IsRequired = true, Name=@"sex", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
     public int sex
     {
       get { return _sex; }
       set { _sex = value; }
     }
     private int _job;
-    [global::ProtoBuf.ProtoMember(6, IsRequired = true, Name=@"job", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::ProtoBuf.ProtoMember(5, IsRequired = true, Name=@"job", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
     public int job
     {
       get { return _job; }
       set { _job = value; }
     }
     private int _vip;
-    [global::ProtoBuf.ProtoMember(7, IsRequired = true, Name=@"vip", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::ProtoBuf.ProtoMember(6, IsRequired = true, Name=@"vip", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
     public int vip
     {
       get { return _vip; }
       set { _vip = value; }
-    }
-    private global::ProtoBuf.IExtension extensionObject;
-    global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
-      { return global::ProtoBuf.Extensible.GetExtensionObject(ref extensionObject, createIfMissing); }
-  }
-  
-  [global::System.Serializable, global::ProtoBuf.ProtoContract(Name=@"ReqEnterGame")]
-  public partial class ReqEnterGame : global::ProtoBuf.IExtensible
-  {
-    public ReqEnterGame() {}
-    
-    private int _index0;
-    [global::ProtoBuf.ProtoMember(1, IsRequired = true, Name=@"index0", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
-    public int index0
-    {
-      get { return _index0; }
-      set { _index0 = value; }
     }
     private global::ProtoBuf.IExtension extensionObject;
     global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
@@ -312,12 +281,12 @@ namespace Cmd
   {
     public RTMainUser() {}
     
-    private int _roleID;
-    [global::ProtoBuf.ProtoMember(1, IsRequired = true, Name=@"roleID", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
-    public int roleID
+    private int _charID;
+    [global::ProtoBuf.ProtoMember(1, IsRequired = true, Name=@"charID", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    public int charID
     {
-      get { return _roleID; }
-      set { _roleID = value; }
+      get { return _charID; }
+      set { _charID = value; }
     }
     private int _job;
     [global::ProtoBuf.ProtoMember(2, IsRequired = true, Name=@"job", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]

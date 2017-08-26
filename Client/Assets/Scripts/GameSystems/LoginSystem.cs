@@ -35,6 +35,7 @@ public class LoginSystem: SystemBase
     }
     public List<int> lateServerIDs = new List<int>();
     public GameServer currentServer;
+    public Cmd.RetLoginGameServer currentRole;
 
     private Connection accountConnection_;
     private Connection gameConnection_;
@@ -81,7 +82,7 @@ public class LoginSystem: SystemBase
         req.time = preOperation_.time;
         req.token = preOperation_.token;
         req.accountid = preOperation_.accountid;
-        Nets.send(Cmd.CLIENTID.RQLoginGame, req);
+        Nets.Send(Cmd.CLIENTID.RQLoginGame, req);
     }
 
     void onConnectAccountSucess()
@@ -90,7 +91,7 @@ public class LoginSystem: SystemBase
         req.action = Cmd.AccountAction.AccountAction_Login;
         req.user = user_;
         req.password = password_;
-        Nets.send(Cmd.CLIENTID.RQAccountOperation, req);
+        Nets.Send(Cmd.CLIENTID.RQAccountOperation, req);
     }
 
     void onConnectAccountFailed(SocketError error)
@@ -104,13 +105,22 @@ public class LoginSystem: SystemBase
         Commands.Instance.Bind(Cmd.SERVERID.RTLoginGame, OnLoginGameReturn);
     }
 
+    public bool HasRole()
+    {
+        return currentRole != null && currentRole.role != null && currentRole.role.id > 0;
+    }
+
     void OnLoginGameReturn(object pb)
     {
         var ret = ParseCmd<Cmd.RetLoginGameServer>(pb);
         Debug.Log("OnLoginGameReturn:" + ret.error.ToString());
+        currentRole = ret;
         if (ret.error == Cmd.LoginGameServerErrorCode.Sucess)
         {
-
+            if (ret.role != null && ret.role.id > 0)
+            {
+                UIController.Instance.Show<RoleView>(true);
+            }
         }
     }
 

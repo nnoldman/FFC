@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <packageDescription id="3aca1ugu" jpegQuality="80" compressPNG="true">
   <resources>
-    <component id="kr711" name="LoginPlant.xml" path="/" exported="true"/>
-    <component id="fl9n2" name="SelectServer.xml" path="/" exported="true"/>
-    <component id="fl9n3" name="ServerItem.xml" path="/" exported="true"/>
-    <component id="fpms8" name="EnterGame.xml" path="/" exported="true"/>
-    <image id="mgqm9" name="tit1.png" path="/" exported="true" scale=""/>
-    <image id="mgqma" name="底纹2.png" path="/" exported="true" scale="9grid" scale9grid="16,16,32,32"/>
-    <image id="mgqmb" name="底纹3.png" path="/" exported="true" scale="9grid" scale9grid="10,10,13,12"/>
-    <image id="mgqmc" name="底纹12.png" path="/" exported="true"/>
-    <image id="mgqmd" name="底纹12的.png" path="/" exported="true" scale="9grid" scale9grid="15,15,23,19"/>
-    <component id="ktwie" name="CreateRole.xml" path="/" exported="true"/>
-    <component id="ktwif" name="RoleList.xml" path="/"/>
-    <component id="bdlag" name="SexGroup.xml" path="/"/>
-    <component id="bdlah" name="Sex0.xml" path="/"/>
-    <component id="qjoqm" name="Create.xml" path="/" exported="true"/>
+    <component id="kr711" name="LoginPlant.xml" path="/LoginPlant/" exported="true"/>
+    <component id="fl9n2" name="SelectServer.xml" path="/SelectServer/" exported="true"/>
+    <component id="fl9n3" name="ServerItem.xml" path="/SelectServer/" exported="true"/>
+    <component id="fpms8" name="EnterGame.xml" path="/SelectServer/" exported="true"/>
+    <image id="mgqm9" name="tit1.png" path="/images/" exported="true"/>
+    <image id="mgqma" name="底纹2.png" path="/images/" exported="true" scale="9grid" scale9grid="16,16,32,32"/>
+    <image id="mgqmb" name="底纹3.png" path="/images/" exported="true" scale="9grid" scale9grid="10,10,13,12"/>
+    <image id="mgqmc" name="底纹12.png" path="/images/" exported="true"/>
+    <image id="mgqmd" name="底纹12的.png" path="/images/" exported="true" scale="9grid" scale9grid="15,15,23,19"/>
+    <component id="jce8n" name="RolePanel.xml" path="/RolePanel/" exported="true"/>
+    <image id="jce8o" name="昵称.png" path="/images/" exported="true"/>
+    <component id="jce8p" name="SelectRoleEnterGame.xml" path="/RolePanel/" exported="true"/>
   </resources>
   <publish name="Login" genCode="true"/>
 </packageDescription>
