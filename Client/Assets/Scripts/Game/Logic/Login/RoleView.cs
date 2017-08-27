@@ -21,22 +21,24 @@ public class RoleView:View
 
     protected override void OnInit()
     {
-        this.window.enterGame.onClick.Add(OnCommand);
+        this.window.enterGame2.onClick.Add(OnCommand);
     }
 
     void OnCommand(EventContext context)
     {
-        if(context.sender==this.window.enterGame)
+        if(context.sender==this.window.enterGame2)
         {
             if(LoginSystem.Instance.HasRole())
+            {
                 Nets.Send(Cmd.CLIENTID.RQEnterGame);
+            }
             else
             {
                 var cmd = new Cmd.ReqCreateRole();
-                cmd.name = this.window.name.text;
+                cmd.name = this.window.name1.text;
                 cmd.sex = 0;
                 cmd.job = 1;
-                Nets.Send(Cmd.CLIENTID.RQEnterGame,cmd);
+                Nets.Send(Cmd.CLIENTID.RQCreateRole,cmd);
             }
         }
     }
@@ -51,12 +53,12 @@ public class RoleView:View
 
     void SetForEnterGame()
     {
-        this.window.enterGame.title = "进入游戏";
+        this.window.enterGame2.title = "进入游戏";
 
     }
 
     void SetForCreateRole()
     {
-        this.window.enterGame.title = "创建角色";
+        this.window.enterGame2.title = "创建角色";
     }
 }

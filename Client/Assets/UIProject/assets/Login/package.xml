@@ -12,7 +12,6 @@
     <image id="mgqmd" name="底纹12的.png" path="/images/" exported="true" scale="9grid" scale9grid="15,15,23,19"/>
     <component id="jce8n" name="RolePanel.xml" path="/RolePanel/" exported="true"/>
     <image id="jce8o" name="昵称.png" path="/images/" exported="true"/>
-    <component id="jce8p" name="SelectRoleEnterGame.xml" path="/RolePanel/" exported="true"/>
   </resources>
   <publish name="Login" genCode="true"/>
 </packageDescription>
