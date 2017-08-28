@@ -165,7 +165,7 @@ public class Nets : BaseController
     }
 
 
-    public static void sendCommand(Cmd.CLIENTID msgid)
+    public static void Send(Cmd.CLIENTID msgid)
     {
         if (!isConnected)
             return;
@@ -198,7 +198,7 @@ public class Nets : BaseController
         Instance.mSocketBase.send(sSerializeBuffer);
     }
 
-    public static void send<T>(Cmd.CLIENTID msgid, T protodata) where T : ProtoBuf.IExtensible
+    public static void Send<T>(Cmd.CLIENTID msgid, T protodata) where T : ProtoBuf.IExtensible
     {
         if (!isConnected)
             return;

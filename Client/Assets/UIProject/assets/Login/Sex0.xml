@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<component size="53,49" extention="Button">
-  <controller name="button" pages="0,up,1,down" selected="1"/>
-  <displayList>
-    <image id="n0_bdla" name="n0" src="mgqmc" xy="0,0"/>
-  </displayList>
-  <Button mode="Radio" downEffect="dark" downEffectValue="0.80"/>
-  <relation target="" sidePair=""/>
-</component>
