@@ -129,36 +129,41 @@ namespace Cmd
       get { return _id; }
       set { _id = value; }
     }
-    private int _level;
-    [global::ProtoBuf.ProtoMember(2, IsRequired = true, Name=@"level", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    private int _level = default(int);
+    [global::ProtoBuf.ProtoMember(2, IsRequired = false, Name=@"level", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(default(int))]
     public int level
     {
       get { return _level; }
       set { _level = value; }
     }
-    private string _name;
-    [global::ProtoBuf.ProtoMember(3, IsRequired = true, Name=@"name", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    private string _name = "";
+    [global::ProtoBuf.ProtoMember(3, IsRequired = false, Name=@"name", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue("")]
     public string name
     {
       get { return _name; }
       set { _name = value; }
     }
-    private int _sex;
-    [global::ProtoBuf.ProtoMember(4, IsRequired = true, Name=@"sex", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    private int _sex = default(int);
+    [global::ProtoBuf.ProtoMember(4, IsRequired = false, Name=@"sex", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(default(int))]
     public int sex
     {
       get { return _sex; }
       set { _sex = value; }
     }
-    private int _job;
-    [global::ProtoBuf.ProtoMember(5, IsRequired = true, Name=@"job", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    private int _job = default(int);
+    [global::ProtoBuf.ProtoMember(5, IsRequired = false, Name=@"job", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(default(int))]
     public int job
     {
       get { return _job; }
       set { _job = value; }
     }
-    private int _vip;
-    [global::ProtoBuf.ProtoMember(6, IsRequired = true, Name=@"vip", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    private int _vip = default(int);
+    [global::ProtoBuf.ProtoMember(6, IsRequired = false, Name=@"vip", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(default(int))]
     public int vip
     {
       get { return _vip; }

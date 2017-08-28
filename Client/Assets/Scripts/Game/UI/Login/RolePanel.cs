@@ -7,8 +7,8 @@ namespace Login
 {
 	public partial class RolePanel : GComponent
 	{
-		public GTextField name;
-		public GButton enterGame;
+		public GTextField name1;
+		public GButton enterGame2;
 
 		public const string URL = "ui://3aca1ugujce8n";
 
@@ -25,8 +25,8 @@ namespace Login
 		{
 			base.ConstructFromXML(xml);
 
-			name = (GTextField)this.GetChild("name");
-			enterGame = (GButton)this.GetChild("enterGame");
+			name1 = (GTextField)this.GetChild("name1");
+			enterGame2 = (GButton)this.GetChild("enterGame2");
 		}
 	}
 }

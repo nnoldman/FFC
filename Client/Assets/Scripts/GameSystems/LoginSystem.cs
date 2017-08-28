@@ -117,7 +117,7 @@ public class LoginSystem: SystemBase
         currentRole = ret;
         if (ret.error == Cmd.LoginGameServerErrorCode.Sucess)
         {
-            if (ret.role != null && ret.role.id > 0)
+            if (ret.role != null)
             {
                 UIController.Instance.Show<RoleView>(true);
             }

@@ -148,6 +148,7 @@ public class Nets : BaseController
     static void sendCommand<T>(T cmd) where T : ProtocoBuffer
     {
         sSerializeBuffer.Position = 0;
+        sSerializeBuffer.SetLength(0);
         cmd.serialize(sSerializeBuffer);
         Instance.mSocketBase.send(sSerializeBuffer);
     }

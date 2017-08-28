@@ -1,7 +1,7 @@
 {
 	"codeGeneration":{
 		"classNamePrefix":"",
-		"codePath":"D:\\src\\FF\\C\\Client\\Assets\\Scripts\\Game\\UI",
+		"codePath":"C:\\Src\\FF\\C\\Client\\Assets\\Scripts\\Game\\UI",
 		"codeType":"C#",
 		"getMemberByName":true,
 		"ignoreNoname":true,
@@ -10,5 +10,5 @@
 	},
 	"fileExtension":"",
 	"packageCount":2,
-	"path":"D:\\src\\FF\\C\\Client\\Assets\\Resources\\UI"
+	"path":"C:\\Src\\FF\\C\\Client\\Assets\\Resources\\UI"
 }

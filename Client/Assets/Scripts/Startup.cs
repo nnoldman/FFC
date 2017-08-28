@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using AppCore;
+using FairyGUI;
 
 public class Startup : MonoBehaviour {
     Startup mInstance;
@@ -17,6 +18,7 @@ public class Startup : MonoBehaviour {
     IEnumerator OnStartEnd() {
         Nets.Instance = new Nets();
         yield return Nets.Instance.initialize();
+        UIPackage.AddPackage("UI/Common");
         UIController.Instance.Show<HomePageWindow>();
         yield return null;
     }
