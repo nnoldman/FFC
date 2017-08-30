@@ -38,6 +38,14 @@ public class UIController: BaseController
         return ret;
     }
 
+    public void Close()
+    {
+        foreach (var view in mViews)
+            view.Value.Hide();
+        GRoot.inst.CloseAllWindows();
+    }
+
+
     public T Hide<T>() where T : ViewBase, new()
     {
         return default(T);

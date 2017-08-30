@@ -13,3 +13,6 @@
 /Client/obj/Debug
 /Client/.vs/Client/v15/*.suo
 /Client/*.csproj
+/Client/.vs/Client/v15/*.opendb
+/Client/.vs/Client/v15/*.db
+/Client/.vs/Client/v15/sqlite3/*.ide

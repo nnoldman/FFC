@@ -45,20 +45,28 @@ public class RoleView:View
 
     protected override void OnShowMe()
     {
-        if (LoginSystem.Instance.HasRole())
-            SetForEnterGame();
-        else
-            SetForCreateRole();
+        UpdateUI();
     }
 
     void SetForEnterGame()
     {
+        var role = LoginSystem.Instance.currentRole;
+        this.window.name1.text = role.name;
+        this.window.name1.asTextInput.enabled = false;
         this.window.enterGame2.title = "进入游戏";
-
     }
 
     void SetForCreateRole()
     {
+        this.window.name1.asTextInput.enabled = true;
         this.window.enterGame2.title = "创建角色";
+    }
+
+    public void UpdateUI()
+    {
+        if (LoginSystem.Instance.HasRole())
+            SetForEnterGame();
+        else
+            SetForCreateRole();
     }
 }

@@ -35,7 +35,7 @@ public class LoginSystem: SystemBase
     }
     public List<int> lateServerIDs = new List<int>();
     public GameServer currentServer;
-    public Cmd.RetLoginGameServer currentRole;
+    public Cmd.GameRole currentRole;
 
     private Connection accountConnection_;
     private Connection gameConnection_;
@@ -103,25 +103,34 @@ public class LoginSystem: SystemBase
     {
         Commands.Instance.Bind(Cmd.SERVERID.RTAccountOperation, OnAccountReturn);
         Commands.Instance.Bind(Cmd.SERVERID.RTLoginGame, OnLoginGameReturn);
+        Commands.Instance.Bind(Cmd.SERVERID.RTCreateRole, OnCreateRole);
     }
 
     public bool HasRole()
     {
-        return currentRole != null && currentRole.role != null && currentRole.role.id > 0;
+        return currentRole != null && currentRole.id > 0;
+    }
+    void OnCreateRole(object pb)
+    {
+        var ret = ParseCmd<Cmd.RetCreateRole>(pb);
+        Debug.Log("OnCreateRole:" + ret.error.ToString());
+        currentRole = ret.role;
+        ShowRoleView();
+    }
+
+    void ShowRoleView()
+    {
+        var window = UIController.Instance.Get<RoleView>();
+        window.UpdateUI();
+        window.ShowWindow();
     }
 
     void OnLoginGameReturn(object pb)
     {
         var ret = ParseCmd<Cmd.RetLoginGameServer>(pb);
         Debug.Log("OnLoginGameReturn:" + ret.error.ToString());
-        currentRole = ret;
-        if (ret.error == Cmd.LoginGameServerErrorCode.Sucess)
-        {
-            if (ret.role != null)
-            {
-                UIController.Instance.Show<RoleView>(true);
-            }
-        }
+        currentRole = ret.role;
+        ShowRoleView();
     }
 
     void OnAccountReturn(object pb)
