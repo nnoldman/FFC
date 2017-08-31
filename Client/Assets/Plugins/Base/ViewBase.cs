@@ -47,6 +47,13 @@ public class ViewBase : Window
         this.OnShowMe();
         this.BindListeners();
     }
+
+    public void ShowWindow(bool only=true)
+    {
+        if(only)
+            UIController.Instance.Close();
+        this.Show();
+    }
 }
 
 

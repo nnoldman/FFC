@@ -122,8 +122,9 @@ namespace Cmd
   {
     public GameRole() {}
     
-    private int _id;
-    [global::ProtoBuf.ProtoMember(1, IsRequired = true, Name=@"id", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    private int _id = default(int);
+    [global::ProtoBuf.ProtoMember(1, IsRequired = false, Name=@"id", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(default(int))]
     public int id
     {
       get { return _id; }
@@ -179,15 +180,17 @@ namespace Cmd
   {
     public RetLoginGameServer() {}
     
-    private Cmd.LoginGameServerErrorCode _error;
-    [global::ProtoBuf.ProtoMember(1, IsRequired = true, Name=@"error", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
-    public Cmd.LoginGameServerErrorCode error
+    private Cmd.LoginGameError _error = Cmd.LoginGameError.LoginGameSucess;
+    [global::ProtoBuf.ProtoMember(1, IsRequired = false, Name=@"error", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
+    [global::System.ComponentModel.DefaultValue(Cmd.LoginGameError.LoginGameSucess)]
+    public Cmd.LoginGameError error
     {
       get { return _error; }
       set { _error = value; }
     }
-    private Cmd.GameRole _role;
-    [global::ProtoBuf.ProtoMember(2, IsRequired = true, Name=@"role", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    private Cmd.GameRole _role = null;
+    [global::ProtoBuf.ProtoMember(2, IsRequired = false, Name=@"role", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    [global::System.ComponentModel.DefaultValue(null)]
     public Cmd.GameRole role
     {
       get { return _role; }
@@ -241,40 +244,12 @@ namespace Cmd
       get { return _error; }
       set { _error = value; }
     }
-    private int _roleID;
-    [global::ProtoBuf.ProtoMember(2, IsRequired = true, Name=@"roleID", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
-    public int roleID
+    private Cmd.GameRole _role;
+    [global::ProtoBuf.ProtoMember(2, IsRequired = true, Name=@"role", DataFormat = global::ProtoBuf.DataFormat.Default)]
+    public Cmd.GameRole role
     {
-      get { return _roleID; }
-      set { _roleID = value; }
-    }
-    private string _name;
-    [global::ProtoBuf.ProtoMember(3, IsRequired = true, Name=@"name", DataFormat = global::ProtoBuf.DataFormat.Default)]
-    public string name
-    {
-      get { return _name; }
-      set { _name = value; }
-    }
-    private int _sex;
-    [global::ProtoBuf.ProtoMember(4, IsRequired = true, Name=@"sex", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
-    public int sex
-    {
-      get { return _sex; }
-      set { _sex = value; }
-    }
-    private int _job;
-    [global::ProtoBuf.ProtoMember(5, IsRequired = true, Name=@"job", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
-    public int job
-    {
-      get { return _job; }
-      set { _job = value; }
-    }
-    private int _vip;
-    [global::ProtoBuf.ProtoMember(6, IsRequired = true, Name=@"vip", DataFormat = global::ProtoBuf.DataFormat.TwosComplement)]
-    public int vip
-    {
-      get { return _vip; }
-      set { _vip = value; }
+      get { return _role; }
+      set { _role = value; }
     }
     private global::ProtoBuf.IExtension extensionObject;
     global::ProtoBuf.IExtension global::ProtoBuf.IExtensible.GetExtensionObject(bool createIfMissing)
@@ -369,29 +344,29 @@ namespace Cmd
       AccountErrorCode_LoginSucessed = 5
     }
   
-    [global::ProtoBuf.ProtoContract(Name=@"LoginGameServerErrorCode")]
-    public enum LoginGameServerErrorCode
+    [global::ProtoBuf.ProtoContract(Name=@"LoginGameError")]
+    public enum LoginGameError
     {
             
-      [global::ProtoBuf.ProtoEnum(Name=@"Sucess", Value=0)]
-      Sucess = 0,
+      [global::ProtoBuf.ProtoEnum(Name=@"LoginGameSucess", Value=0)]
+      LoginGameSucess = 0,
             
-      [global::ProtoBuf.ProtoEnum(Name=@"Overdue", Value=1)]
-      Overdue = 1,
+      [global::ProtoBuf.ProtoEnum(Name=@"LoginGameOverdue", Value=1)]
+      LoginGameOverdue = 1,
             
-      [global::ProtoBuf.ProtoEnum(Name=@"Invalid", Value=2)]
-      Invalid = 2
+      [global::ProtoBuf.ProtoEnum(Name=@"LoginGameInvalid", Value=2)]
+      LoginGameInvalid = 2
     }
   
     [global::ProtoBuf.ProtoContract(Name=@"CreateRoleError")]
     public enum CreateRoleError
     {
             
-      [global::ProtoBuf.ProtoEnum(Name=@"CreateRoleError_Sucess", Value=0)]
-      CreateRoleError_Sucess = 0,
+      [global::ProtoBuf.ProtoEnum(Name=@"CreateRoleSucess", Value=0)]
+      CreateRoleSucess = 0,
             
-      [global::ProtoBuf.ProtoEnum(Name=@"CreateRoleError_NameRepeated", Value=1)]
-      CreateRoleError_NameRepeated = 1
+      [global::ProtoBuf.ProtoEnum(Name=@"CreateRoleNameRepeated", Value=1)]
+      CreateRoleNameRepeated = 1
     }
   
 }

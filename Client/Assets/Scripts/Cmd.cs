@@ -14,8 +14,8 @@ namespace Cmd
     public enum CLIENTID
     {
             
-      [global::ProtoBuf.ProtoEnum(Name=@"RQLoginGameServer", Value=100)]
-      RQLoginGameServer = 100,
+      [global::ProtoBuf.ProtoEnum(Name=@"RQLoginCenter", Value=100)]
+      RQLoginCenter = 100,
             
       [global::ProtoBuf.ProtoEnum(Name=@"RQAccountOperation", Value=300)]
       RQAccountOperation = 300,
@@ -34,8 +34,8 @@ namespace Cmd
     public enum SERVERID
     {
             
-      [global::ProtoBuf.ProtoEnum(Name=@"RTLoginGameServer", Value=100)]
-      RTLoginGameServer = 100,
+      [global::ProtoBuf.ProtoEnum(Name=@"RTLoginCenter", Value=100)]
+      RTLoginCenter = 100,
             
       [global::ProtoBuf.ProtoEnum(Name=@"RTAccountOperation", Value=300)]
       RTAccountOperation = 300,
